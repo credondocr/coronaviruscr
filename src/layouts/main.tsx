@@ -21,6 +21,20 @@ const MainLayout: React.FC = ({ children }) => {
 
         <footer sx={{ variant: 'layout.footer' }}>
           <Styled.p>
+            Para{' '}
+            <span role="img" aria-label="Costa Rica">
+              🇨🇷
+            </span>{' '}
+            con{' '}
+            <span role="img" aria-label="amor">
+              ❤️
+            </span>{' '}
+            por{' '}
+            <Styled.a target="_blank" href="https://kevinwolf.dev">
+              Kevin Wolf
+            </Styled.a>
+          </Styled.p>
+          <Styled.p>
             Última actualización el{' '}
             {moment().format('DD \\d\\e MMMM \\d\\e YYYY')}
           </Styled.p>

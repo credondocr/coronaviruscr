@@ -19,6 +19,7 @@ const theme = {
     backgroundSecondary: '#212024',
     text: '#fff',
     textSecondary: '#95a5a6',
+    primary: '#DC2B80',
     warning: '#f1c40f',
     error: '#e74c3c',
     success: '#2ecc71',
@@ -46,7 +47,7 @@ const theme = {
     },
     footer: {
       textAlign: 'center',
-      fontSize: 0,
+      fontSize: 1,
       color: 'textSecondary',
     },
   },
@@ -153,6 +154,13 @@ const theme = {
     td: {
       textAlign: 'left',
       borderBottomStyle: 'solid',
+    },
+    a: {
+      color: 'primary',
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
     },
   },
 }

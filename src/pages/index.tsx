@@ -1,13 +1,18 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import React from 'react'
-import { NextPage, GetStaticProps } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 
+import { SiteClient } from 'datocms-client'
 import { Meta, Case } from '../types/content'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Section from '../components/section'
 import Card from '../components/card'
+
+require('dotenv').config()
+
+const client = new SiteClient(process.env.API_KEY)
 
 type HomePageProps = {
   meta: Meta
@@ -63,12 +68,15 @@ const HomePage: NextPage<HomePageProps> = ({
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   // @TODO: get this from a rest api sometime in the future
   const meta = await import('../content/meta').then((m) => m.default)
 
   // @TODO: get this from a rest api sometime in the future
-  const cases = await import('../content/cases').then((m) => m.default)
+  const cases = await client.items.all(
+    { 'filter[type]': 'case' },
+    { allPages: true }
+  )
 
   const activeCases = cases.filter((c) => c.caseStatus === 'active')
   const recoveredCases = cases.filter((c) => c.caseStatus === 'recovered')

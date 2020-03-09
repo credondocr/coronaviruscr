@@ -1,0 +1,14 @@
+{
+  "extends": "@kevinwolf",
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  }
+}

@@ -10,7 +10,7 @@ export type Meta = {
 export type Case = {
   detected: Date
   updated: Date
-  status: 'active' | 'recovered' | 'dead'
+  caseStatus: 'active' | 'recovered' | 'dead'
   gender: 'f' | 'm'
   age: number
   nationality: Country

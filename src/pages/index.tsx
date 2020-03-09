@@ -70,9 +70,9 @@ export const getStaticProps: GetStaticProps = async () => {
   // @TODO: get this from a rest api sometime in the future
   const cases = await import('../content/cases').then((m) => m.default)
 
-  const activeCases = cases.filter((c) => c.status === 'active')
-  const recoveredCases = cases.filter((c) => c.status === 'recovered')
-  const deadCases = cases.filter((c) => c.status === 'dead')
+  const activeCases = cases.filter((c) => c.caseStatus === 'active')
+  const recoveredCases = cases.filter((c) => c.caseStatus === 'recovered')
+  const deadCases = cases.filter((c) => c.caseStatus === 'dead')
 
   return {
     props: {

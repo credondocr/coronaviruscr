@@ -10,8 +10,6 @@ import MainLayout from '../layouts/main'
 import Section from '../components/section'
 import Card from '../components/card'
 
-require('dotenv').config()
-
 const client = new SiteClient(process.env.API_KEY)
 
 type HomePageProps = {

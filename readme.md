@@ -1,5 +1,13 @@
 # COVID-19 Costa Rica
 
-Sitio web informativo sobre el estado actual del COVID-19 en Costa Rica. Hecho con [NextJS](https://nextjs.org) y [ThemeUI](https://theme-ui.com).
+Interactive dashboard for the status of COVID-19 in Costa Rica.
 
-✨ PRs welcome.
+## System requirements
+
+- NodeJS
+- Yarn
+
+## Running locally
+
+1. Run `yarn install`
+2. Run `yarn dev`

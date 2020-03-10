@@ -75,6 +75,38 @@ const cases: Case[] = [
     age: 70,
     nationality: Country.UnitedStates,
   },
+  {
+    detected: new Date('2019-03-09'),
+    updated: new Date('2019-03-09'),
+    status: 'active',
+    gender: 'm',
+    age: 52,
+    nationality: Country.CostaRica,
+  },
+  {
+    detected: new Date('2019-03-09'),
+    updated: new Date('2019-03-09'),
+    status: 'active',
+    gender: 'f',
+    age: 11,
+    nationality: Country.CostaRica,
+  },
+  {
+    detected: new Date('2019-03-09'),
+    updated: new Date('2019-03-09'),
+    status: 'active',
+    gender: 'm',
+    age: 13,
+    nationality: Country.CostaRica,
+  },
+  {
+    detected: new Date('2019-03-09'),
+    updated: new Date('2019-03-09'),
+    status: 'active',
+    gender: 'm',
+    age: 54,
+    nationality: Country.CostaRica,
+  },
 ]
 
 export default cases

@@ -30,7 +30,11 @@ const MainLayout: React.FC = ({ children }) => {
               ❤️
             </span>{' '}
             por{' '}
-            <Styled.a target="_blank" href="https://kevinwolf.dev">
+            <Styled.a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://kevinwolf.dev"
+            >
               Kevin Wolf
             </Styled.a>
           </Styled.p>

@@ -7,58 +7,31 @@ import { fetchCases } from '../lib/datocms'
 import { Meta, Case } from '../types/content'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
-import Section from '../components/section'
-import Card from '../components/card'
+import Stats from '../components/home/stats'
 
 type HomePageProps = {
   meta: Meta
   cases: Case[]
-  activeCases: Case[]
-  recoveredCases: Case[]
-  deadCases: Case[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({
-  meta,
-  cases,
-  activeCases,
-  recoveredCases,
-  deadCases,
-}) => {
+const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
+  const filterCases = (casestatus: Case['casestatus']) =>
+    cases.filter((c) => c.casestatus === casestatus)
+
+  const activeCases = filterCases('active')
+  const recoveredCases = filterCases('recovered')
+  const deadCases = filterCases('dead')
+
   return (
     <React.Fragment>
       <SEO {...meta} />
       <MainLayout>
-        <Section title="Estadísticas generales">
-          <div sx={{ variant: 'components.stats.container' }}>
-            <Card
-              sx={{ variant: 'components.stats.mainStat' }}
-              title="Total de casos"
-            >
-              <span sx={{ variant: 'components.text.stat' }}>
-                {cases.length}
-              </span>
-            </Card>
-
-            <Card title="Casos activos">
-              <span sx={{ variant: 'components.text.stat', color: 'warning' }}>
-                {activeCases.length}
-              </span>
-            </Card>
-
-            <Card title="Casos recuperados">
-              <span sx={{ variant: 'components.text.stat', color: 'success' }}>
-                {recoveredCases.length}
-              </span>
-            </Card>
-
-            <Card title="Casos muertos">
-              <span sx={{ variant: 'components.text.stat', color: 'error' }}>
-                {deadCases.length}
-              </span>
-            </Card>
-          </div>
-        </Section>
+        <Stats
+          totalCases={cases.length}
+          activeCases={activeCases.length}
+          recoveredCases={recoveredCases.length}
+          deadCases={deadCases.length}
+        />
       </MainLayout>
     </React.Fragment>
   )
@@ -70,17 +43,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const cases = await fetchCases()
 
-  const activeCases = cases.filter((c) => c.casestatus === 'active')
-  const recoveredCases = cases.filter((c) => c.casestatus === 'recovered')
-  const deadCases = cases.filter((c) => c.casestatus === 'dead')
-
   return {
     props: {
       meta,
       cases,
-      activeCases,
-      recoveredCases,
-      deadCases,
     },
   }
 }

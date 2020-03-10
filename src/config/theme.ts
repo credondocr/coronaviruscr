@@ -84,17 +84,10 @@ const theme = {
       container: {
         display: 'grid',
         gridGap: 2,
-        gridTemplateColumns: ['1fr', null],
-        gridTemplate: [
-          null,
-          `
-          "main main main"
-          "stat stat stat"
-        `,
-        ],
+        gridTemplateColumns: ['1fr', 'repeat(3, 1fr)'],
       },
       mainStat: {
-        gridArea: [null, 'main'],
+        gridColumn: [null, '1/4'],
       },
     },
   },

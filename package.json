@@ -8,9 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "datocms-client": "^3.0.15",
+    "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
-    "next": "^9.2.3-canary.26",
+    "next": "^9.3.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "theme-ui": "^0.3.1"

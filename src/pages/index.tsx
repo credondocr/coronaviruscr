@@ -3,18 +3,18 @@ import { jsx } from 'theme-ui'
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
-import { fetchCases } from '../lib/datocms'
-import { Meta, Case } from '../types/content'
+import { fetchCases, fetchSiteInfo } from '../lib/datocms'
+import { SiteInfo, Case } from '../types/content'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Stats from '../components/home/stats'
 
 type HomePageProps = {
-  meta: Meta
+  siteInfo: SiteInfo
   cases: Case[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
+const HomePage: NextPage<HomePageProps> = ({ siteInfo, cases }) => {
   const filterCases = (casestatus: Case['casestatus']) =>
     cases.filter((c) => c.casestatus === casestatus)
 
@@ -24,7 +24,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
 
   return (
     <React.Fragment>
-      <SEO {...meta} />
+      <SEO {...siteInfo} />
       <MainLayout>
         <Stats
           totalCases={cases.length}
@@ -38,14 +38,12 @@ const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // @TODO: get this from a rest api sometime in the future
-  const meta = await import('../content/meta').then((m) => m.default)
-
+  const siteInfo = await fetchSiteInfo()
   const cases = await fetchCases()
 
   return {
     props: {
-      meta,
+      siteInfo,
       cases,
     },
   }

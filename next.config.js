@@ -3,7 +3,7 @@ const withOffline = require('next-offline')
 const nextConfig = {
   target: 'serverless',
   transformManifest: (manifest) => ['/'].concat(manifest),
-  generateInDevMode: true,
+  generateInDevMode: false,
   workboxOpts: {
     swDest: 'static/service-worker.js',
     runtimeCaching: [

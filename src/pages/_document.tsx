@@ -37,7 +37,11 @@ class Document extends NextDocument {
           <link rel="shortcut icon" href="/images/favicon.ico" />
           <meta name="msapplication-TileColor" content="#1f1f23" />
           <meta name="msapplication-config" content="/browserconfig.xml" />
-          <meta name="theme-color" content="#4ad0fb" />
+          <meta name="theme-color" content="#fd79a8" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+          />
         </Head>
 
         <body>

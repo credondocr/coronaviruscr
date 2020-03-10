@@ -19,7 +19,7 @@ const theme = {
     backgroundSecondary: '#212024',
     text: '#fff',
     textSecondary: '#95a5a6',
-    primary: '#DC2B80',
+    primary: '#fd79a8',
     warning: '#f1c40f',
     error: '#e74c3c',
     success: '#2ecc71',

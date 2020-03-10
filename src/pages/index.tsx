@@ -3,6 +3,7 @@ import { jsx } from 'theme-ui'
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
+import { fetchCases } from '../lib/datocms'
 import { Meta, Case } from '../types/content'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
@@ -70,9 +71,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const cases = await fetchCases()
 
-  const activeCases = cases.filter((c) => c.caseStatus === 'active')
-  const recoveredCases = cases.filter((c) => c.caseStatus === 'recovered')
-  const deadCases = cases.filter((c) => c.caseStatus === 'dead')
+  const activeCases = cases.filter((c) => c.casestatus === 'active')
+  const recoveredCases = cases.filter((c) => c.casestatus === 'recovered')
+  const deadCases = cases.filter((c) => c.casestatus === 'dead')
 
   return {
     props: {

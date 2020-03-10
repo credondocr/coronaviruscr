@@ -10,5 +10,19 @@
         "tsx": "never"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js{,x}"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["*.config.[jt]s{,x}"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
+    }
+  ]
 }

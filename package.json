@@ -22,6 +22,7 @@
     "@types/theme-ui": "^0.3.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
+    "next-offline": "^5.0.0",
     "typescript": "^3.8.3"
   },
   "husky": {

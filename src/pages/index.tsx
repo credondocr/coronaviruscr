@@ -9,7 +9,6 @@ import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Section from '../components/section'
 import Card from '../components/card'
-import { fetchCases } from '../lib/datocms'
 
 type HomePageProps = {
   meta: Meta

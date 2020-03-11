@@ -130,7 +130,12 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
           {
             key: 'age',
             renderTitle: () => 'Edad',
-            renderContent: (c) => c.age,
+            renderContent: (c) =>
+              c.age ? (
+                c.age
+              ) : (
+                <small sx={{ color: 'textSecondary' }}>N/D</small>
+              ),
           },
           {
             key: 'gender',

@@ -36,7 +36,7 @@ export type CaseModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
-  sources?: Maybe<LinksFilter>;
+  news?: Maybe<LinksFilter>;
   nationality?: Maybe<StringFilter>;
   age?: Maybe<IntegerFilter>;
   gender?: Maybe<StringFilter>;
@@ -99,7 +99,7 @@ export type CaseRecord = {
   gender?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   nationality?: Maybe<Scalars['String']>;
-  sources: Array<SourceRecord>;
+  news: Array<NewsRecord>;
   updated?: Maybe<Scalars['Date']>;
   updatedAt: Scalars['DateTime'];
 };
@@ -655,8 +655,7 @@ export type PageModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
-  description?: Maybe<StringFilter>;
-  title?: Maybe<StringFilter>;
+  seo?: Maybe<SeoFilter>;
   name?: Maybe<StringFilter>;
   OR?: Maybe<Array<Maybe<PageModelFilter>>>;
 };
@@ -682,10 +681,6 @@ export enum PageModelOrderBy {
   updatedAt_DESC = 'updatedAt_DESC',
   _isValid_ASC = '_isValid_ASC',
   _isValid_DESC = '_isValid_DESC',
-  description_ASC = 'description_ASC',
-  description_DESC = 'description_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC',
   name_ASC = 'name_ASC',
   name_DESC = 'name_DESC'
 }
@@ -702,10 +697,9 @@ export type PageRecord = {
   _status: ItemStatus;
   _updatedAt: Scalars['DateTime'];
   createdAt: Scalars['DateTime'];
-  description?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
   name?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  seo?: Maybe<SeoField>;
   updatedAt: Scalars['DateTime'];
 };
 
@@ -909,6 +903,10 @@ export type SeoField = {
   image?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   twitterCard?: Maybe<Scalars['String']>;
+};
+
+export type SeoFilter = {
+  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 export type Site = {

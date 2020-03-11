@@ -24,23 +24,23 @@ const layout = {
   nav: {
     container: {
       mt: [3, 0],
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignSelf: 'stretch',
     },
     item: {
       color: 'textSecondary',
       textDecoration: 'none',
       fontSize: [1, 3],
       fontWeight: 'bold',
+      ml: [0, 4],
       '&:hover': {
         color: 'text',
-      },
-      '& + a': {
-        ml: 4,
       },
     },
     itemActive: {
       variant: 'components.layout.nav.item',
       color: 'text',
-      paddingBottom: 1,
       borderBottom: '2px solid',
       borderBottomColor: 'primary',
     },

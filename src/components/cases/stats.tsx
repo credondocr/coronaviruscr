@@ -4,7 +4,6 @@ import { jsx } from 'theme-ui'
 import Card from '../ui/card'
 
 type CasesStatsProps = {
-  suspiciousCases: number
   totalCases: number
   activeCases: number
   recoveredCases: number
@@ -12,7 +11,6 @@ type CasesStatsProps = {
 }
 
 const CasesStats: React.FC<CasesStatsProps> = ({
-  suspiciousCases,
   totalCases,
   activeCases,
   recoveredCases,
@@ -20,15 +18,6 @@ const CasesStats: React.FC<CasesStatsProps> = ({
 }) => {
   return (
     <div sx={{ variant: 'components.cases.stats.container' }}>
-      <Card
-        sx={{ variant: 'components.cases.stats.mainStat' }}
-        title="Casos sospechosos"
-      >
-        <span sx={{ variant: 'components.ui.text.stat' }}>
-          {suspiciousCases}
-        </span>
-      </Card>
-
       <Card
         sx={{ variant: 'components.cases.stats.mainStat' }}
         title="Casos confirmados"

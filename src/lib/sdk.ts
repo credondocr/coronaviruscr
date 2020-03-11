@@ -28,13 +28,3 @@ export const fetchCases = async (
   const { cases } = await sdk.cases(variables)
   return cases
 }
-
-export type SuspiciousCase = graphql.SuspiciousCaseFragmentFragment
-export const SuspiciousCaseOrderBy = graphql.SuspiciouscaseModelOrderBy
-
-export const fetchSuspiciousCases = async (
-  variables?: graphql.suspiciousCasesQueryVariables
-): Promise<SuspiciousCase[]> => {
-  const { suspiciousCases } = await sdk.suspiciousCases(variables)
-  return suspiciousCases
-}

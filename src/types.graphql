@@ -26,15 +26,3 @@ query cases($orderBy: [CaseModelOrderBy], $first: IntType) {
     ...CaseFragment
   }
 }
-
-fragment SuspiciousCaseFragment on SuspiciouscaseRecord {
-  id
-  date
-  number
-}
-
-query suspiciousCases($orderBy: [SuspiciouscaseModelOrderBy]) {
-  suspiciousCases: allSuspiciouscases(orderBy: $orderBy) {
-    ...SuspiciousCaseFragment
-  }
-}

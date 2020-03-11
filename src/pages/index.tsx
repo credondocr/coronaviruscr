@@ -7,6 +7,7 @@ import MainLayout from '../layouts/main'
 import Section from '../components/ui/section'
 import CasesStats from '../components/cases/stats'
 import CasesList from '../components/cases/list'
+import CasesMap from '../components/cases/map'
 
 type HomePageProps = {
   meta: sdk.PageMetaTag[]
@@ -34,6 +35,9 @@ const HomePage: NextPage<HomePageProps> = ({
     <>
       <SEO meta={meta} />
       <MainLayout>
+        <Section title="Mapa">
+          <CasesMap cases={recentCases} />
+        </Section>
         <Section title="Estadísticas generales">
           <CasesStats
             suspiciousCases={lastSuspiciousCasesNumber}

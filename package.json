@@ -9,8 +9,10 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
+    "@types/google-map-react": "^1.1.5",
     "country-code-emoji": "^1.0.0",
     "framer-motion": "^1.9.1",
+    "google-map-react": "^1.1.6",
     "graphql-request": "^1.8.2",
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",

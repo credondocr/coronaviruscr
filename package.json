@@ -1,5 +1,5 @@
 {
-  "name": "covid19cr.com",
+  "name": "coronaviruscr",
   "version": "0.0.0-unversioned",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "react": "^16.13.0",
     "react-datocms": "^1.1.0",
     "react-dom": "^16.13.0",
+    "react-ga": "^2.7.0",
     "react-icons": "^3.9.0",
     "theme-ui": "^0.3.1"
   },

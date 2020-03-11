@@ -3,6 +3,7 @@ import { jsx } from 'theme-ui'
 import React from 'react'
 
 import * as sdk from '../../lib/sdk'
+import * as analytics from '../../lib/analytics'
 import Select from '../ui/select'
 import Table from '../ui/table'
 import * as format from '../../utils/format'
@@ -22,7 +23,9 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
 
   const onStatusChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setStatusFilter(e.target.value as StatusFilter)
+      const filter = e.target.value as StatusFilter
+      setStatusFilter(filter)
+      analytics.logEvent('cases list', 'set filter', { label: filter })
     },
     []
   )
@@ -32,8 +35,10 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
 
   const onRowsPerPageChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = Number(e.target.value)
+      setRowsPerPage(value)
       setPage(1)
-      setRowsPerPage(Number(e.target.value))
+      analytics.logEvent('cases list', 'set cases per page', { value })
     },
     []
   )

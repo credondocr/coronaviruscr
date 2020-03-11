@@ -3,10 +3,13 @@ const cases = {
     container: {
       display: 'grid',
       gridGap: 5,
-      gridTemplateColumns: ['1fr', 'repeat(3, 1fr)'],
+      gridTemplateColumns: ['1fr', 'repeat(6, 1fr)'],
     },
     mainStat: {
-      gridColumn: [null, '1/4'],
+      gridColumn: [null, 'span 3'],
+    },
+    secondaryStat: {
+      gridColumn: [null, 'span 2'],
     },
   },
   list: {

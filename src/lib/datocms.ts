@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import 'isomorphic-unfetch'
 
-import { PageMetaTag, Case } from '../types/content'
+import { PageMetaTag, Case, SuspiciousCase } from '../types/content'
 
 const API_URL = 'https://graphql.datocms.com'
 const API_TOKEN = 'b5d7d10dacad064cb899ce0d988500'
@@ -67,4 +67,23 @@ export const fetchCases = async ({
 } = {}): Promise<Case[]> => {
   const data = await fetchApi(FETCH_CASES_QUERY, { orderBy, first })
   return data.allCases
+}
+
+const FETCH_SUSPICIOUS_CASES_QUERY = `
+query fetchSuspiciousCases($orderBy: [SuspiciouscaseModelOrderBy]) {
+  allSuspiciouscases(orderBy: $orderBy) {
+    id
+    date
+    number
+  }
+}
+`
+
+export const fetchSuspiciousCases = async ({
+  orderBy,
+}: {
+  orderBy?: string
+} = {}): Promise<SuspiciousCase[]> => {
+  const data = await fetchApi(FETCH_SUSPICIOUS_CASES_QUERY, { orderBy })
+  return data.allSuspiciouscases
 }

@@ -4,6 +4,7 @@ import { jsx } from 'theme-ui'
 import Card from '../ui/card'
 
 type CasesStatsProps = {
+  suspiciousCases: number
   totalCases: number
   activeCases: number
   recoveredCases: number
@@ -11,6 +12,7 @@ type CasesStatsProps = {
 }
 
 const CasesStats: React.FC<CasesStatsProps> = ({
+  suspiciousCases,
   totalCases,
   activeCases,
   recoveredCases,
@@ -20,24 +22,42 @@ const CasesStats: React.FC<CasesStatsProps> = ({
     <div sx={{ variant: 'components.cases.stats.container' }}>
       <Card
         sx={{ variant: 'components.cases.stats.mainStat' }}
-        title="Total de casos"
+        title="Casos sospechosos"
+      >
+        <span sx={{ variant: 'components.ui.text.stat' }}>
+          {suspiciousCases}
+        </span>
+      </Card>
+
+      <Card
+        sx={{ variant: 'components.cases.stats.mainStat' }}
+        title="Casos confirmados"
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>{totalCases}</span>
       </Card>
 
-      <Card title="Casos activos">
+      <Card
+        title="Casos activos"
+        sx={{ variant: 'components.cases.stats.secondaryStat' }}
+      >
         <span sx={{ variant: 'components.ui.text.stat', color: 'warning' }}>
           {activeCases}
         </span>
       </Card>
 
-      <Card title="Casos recuperados">
+      <Card
+        title="Casos recuperados"
+        sx={{ variant: 'components.cases.stats.secondaryStat' }}
+      >
         <span sx={{ variant: 'components.ui.text.stat', color: 'success' }}>
           {recoveredCases}
         </span>
       </Card>
 
-      <Card title="Casos fallecidos">
+      <Card
+        title="Casos fallecidos"
+        sx={{ variant: 'components.cases.stats.secondaryStat' }}
+      >
         <span sx={{ variant: 'components.ui.text.stat', color: 'error' }}>
           {deadCases}
         </span>

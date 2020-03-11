@@ -12,3 +12,9 @@ export type Case = {
   gender: 'f' | 'm'
   age: number
 }
+
+export type SuspiciousCase = {
+  id: string
+  date: Date
+  number: number
+}

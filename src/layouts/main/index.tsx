@@ -1,25 +1,29 @@
 /** @jsx jsx */
 import { jsx, ThemeProvider, Styled } from 'theme-ui'
-import moment from 'moment'
 
-import theme from '../config/theme'
-
-moment.locale('ES')
+import theme from '../../config/theme'
+import { formatDate } from '../../utils/format'
+import Nav from './nav'
 
 const MainLayout: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <div sx={{ variant: 'layout.container' }}>
-        <header>
-          <Styled.h2 as="h1" sx={{ color: 'textSecondary' }}>
-            COVID-19
-          </Styled.h2>
-          <Styled.h1>Costa Rica</Styled.h1>
-        </header>
+      <header sx={{ variant: 'components.layout.header.wrapper' }}>
+        <div sx={{ variant: 'components.layout.header.container' }}>
+          <Styled.h1>
+            <span role="img" aria-label="COVID-19">
+              🦠
+            </span>{' '}
+            Costa Rica
+          </Styled.h1>
+          <Nav />
+        </div>
+      </header>
 
-        <main sx={{ variant: 'layout.main' }}>{children}</main>
+      <main sx={{ variant: 'components.layout.main' }}>{children}</main>
 
-        <footer sx={{ variant: 'layout.footer' }}>
+      <footer sx={{ variant: 'components.layout.footer.wrapper' }}>
+        <div sx={{ variant: 'components.layout.footer.container' }}>
           <Styled.p>
             Para{' '}
             <span role="img" aria-label="Costa Rica">
@@ -46,12 +50,9 @@ const MainLayout: React.FC = ({ children }) => {
               Cesar Redondo
             </Styled.a>
           </Styled.p>
-          <Styled.p>
-            Última actualización el{' '}
-            {moment().format('DD \\d\\e MMMM \\d\\e YYYY')}
-          </Styled.p>
-        </footer>
-      </div>
+          <Styled.p>Última actualización el {formatDate()}</Styled.p>
+        </div>
+      </footer>
     </ThemeProvider>
   )
 }

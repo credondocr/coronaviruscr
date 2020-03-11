@@ -1,17 +1,14 @@
-import { Country } from './countries'
+import { SeoMetaTagType } from 'react-datocms'
 
-export type Meta = {
-  title: string
-  description: string
-  url: string
-  image: string
-}
+export type PageMetaTag = SeoMetaTagType
+
+export type CaseStatus = 'active' | 'recovered' | 'dead'
 
 export type Case = {
+  id: string
   detected: Date
   updated: Date
-  casestatus: 'active' | 'recovered' | 'dead'
+  casestatus: CaseStatus
   gender: 'f' | 'm'
   age: number
-  nationality: Country
 }

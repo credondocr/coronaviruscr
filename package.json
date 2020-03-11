@@ -8,16 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
+    "country-code-emoji": "^1.0.0",
+    "framer-motion": "^1.9.1",
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
     "next": "^9.3.0",
+    "nprogress": "^0.2.0",
     "react": "^16.13.0",
+    "react-datocms": "^1.1.0",
     "react-dom": "^16.13.0",
+    "react-icons": "^3.9.0",
     "theme-ui": "^0.3.1"
   },
   "devDependencies": {
     "@kevinwolf/eslint-config": "^0.2.4",
     "@types/node": "^13.9.0",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "^16.9.23",
     "@types/theme-ui": "^0.3.0",
     "husky": "^4.2.3",

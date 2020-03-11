@@ -54,7 +54,7 @@ const HomePage: NextPage<HomePageProps> = ({
 export const getStaticProps: GetStaticProps = async () => {
   const meta = await sdk.fetchPageMetaTags({ name: 'home' })
 
-  const allCases = await sdk.fetchCases()
+  const allCases = await sdk.fetchCases({ first: 100 })
 
   const suspiciousCases = await sdk.fetchSuspiciousCases({
     orderBy: [sdk.SuspiciousCaseOrderBy.date_DESC],

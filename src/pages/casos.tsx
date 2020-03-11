@@ -28,6 +28,7 @@ const CasesPage: NextPage<CasesPageProps> = ({ meta, cases }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const meta = await sdk.fetchPageMetaTags({ name: 'cases' })
   const cases = await sdk.fetchCases({
+    first: 100,
     orderBy: [sdk.CaseOrderBy.detected_DESC],
   })
 

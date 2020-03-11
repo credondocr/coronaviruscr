@@ -714,20 +714,17 @@ export type Query = {
   _allNewsMeta: CollectionMetadata;
   _allPagesMeta: CollectionMetadata;
   _allSourcesMeta: CollectionMetadata;
-  _allSuspiciouscasesMeta: CollectionMetadata;
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   _site: Site;
   allCases: Array<CaseRecord>;
   allNews: Array<NewsRecord>;
   allPages: Array<PageRecord>;
   allSources: Array<SourceRecord>;
-  allSuspiciouscases: Array<SuspiciouscaseRecord>;
   allUploads: Array<FileField>;
   case?: Maybe<CaseRecord>;
   news?: Maybe<NewsRecord>;
   page?: Maybe<PageRecord>;
   source?: Maybe<SourceRecord>;
-  suspiciouscase?: Maybe<SuspiciouscaseRecord>;
   upload?: Maybe<FileField>;
 };
 
@@ -753,12 +750,6 @@ export type Query_allPagesMetaArgs = {
 export type Query_allSourcesMetaArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<SourceModelFilter>;
-};
-
-
-export type Query_allSuspiciouscasesMetaArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<SuspiciouscaseModelFilter>;
 };
 
 
@@ -809,15 +800,6 @@ export type QueryallSourcesArgs = {
 };
 
 
-export type QueryallSuspiciouscasesArgs = {
-  locale?: Maybe<SiteLocale>;
-  skip?: Maybe<Scalars['IntType']>;
-  first?: Maybe<Scalars['IntType']>;
-  filter?: Maybe<SuspiciouscaseModelFilter>;
-  orderBy?: Maybe<Array<Maybe<SuspiciouscaseModelOrderBy>>>;
-};
-
-
 export type QueryallUploadsArgs = {
   locale?: Maybe<SiteLocale>;
   skip?: Maybe<Scalars['IntType']>;
@@ -852,13 +834,6 @@ export type QuerysourceArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<SourceModelFilter>;
   orderBy?: Maybe<Array<Maybe<SourceModelOrderBy>>>;
-};
-
-
-export type QuerysuspiciouscaseArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<SuspiciouscaseModelFilter>;
-  orderBy?: Maybe<Array<Maybe<SuspiciouscaseModelOrderBy>>>;
 };
 
 
@@ -1017,72 +992,6 @@ export type StringMatchesFilter = {
   pattern: Scalars['String'];
   caseSensitive?: Maybe<Scalars['BooleanType']>;
   regexp?: Maybe<Scalars['BooleanType']>;
-};
-
-export type SuspiciouscaseModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
-  _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  _isValid?: Maybe<BooleanFilter>;
-  number?: Maybe<IntegerFilter>;
-  date?: Maybe<DateFilter>;
-  OR?: Maybe<Array<Maybe<SuspiciouscaseModelFilter>>>;
-};
-
-export enum SuspiciouscaseModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  updatedAt_ASC = 'updatedAt_ASC',
-  updatedAt_DESC = 'updatedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  number_ASC = 'number_ASC',
-  number_DESC = 'number_DESC',
-  date_ASC = 'date_ASC',
-  date_DESC = 'date_DESC'
-}
-
-export type SuspiciouscaseRecord = {
-   __typename?: 'SuspiciouscaseRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  date?: Maybe<Scalars['Date']>;
-  id: Scalars['ItemId'];
-  number?: Maybe<Scalars['IntType']>;
-  updatedAt: Scalars['DateTime'];
-};
-
-
-export type SuspiciouscaseRecord_seoMetaTagsArgs = {
-  locale?: Maybe<SiteLocale>;
 };
 
 export type Tag = {
@@ -1362,24 +1271,6 @@ export type casesQuery = (
   )> }
 );
 
-export type SuspiciousCaseFragmentFragment = (
-  { __typename?: 'SuspiciouscaseRecord' }
-  & Pick<SuspiciouscaseRecord, 'id' | 'date' | 'number'>
-);
-
-export type suspiciousCasesQueryVariables = {
-  orderBy?: Maybe<Array<Maybe<SuspiciouscaseModelOrderBy>>>;
-};
-
-
-export type suspiciousCasesQuery = (
-  { __typename?: 'Query' }
-  & { suspiciousCases: Array<(
-    { __typename?: 'SuspiciouscaseRecord' }
-    & SuspiciousCaseFragmentFragment
-  )> }
-);
-
 export const PageMetaTagFragmentFragmentDoc = gql`
     fragment PageMetaTagFragment on Tag {
   attributes
@@ -1395,13 +1286,6 @@ export const CaseFragmentFragmentDoc = gql`
   casestatus
   gender
   age
-}
-    `;
-export const SuspiciousCaseFragmentFragmentDoc = gql`
-    fragment SuspiciousCaseFragment on SuspiciouscaseRecord {
-  id
-  date
-  number
 }
     `;
 export const pageMetaTagsDocument = gql`
@@ -1420,13 +1304,6 @@ export const casesDocument = gql`
   }
 }
     ${CaseFragmentFragmentDoc}`;
-export const suspiciousCasesDocument = gql`
-    query suspiciousCases($orderBy: [SuspiciouscaseModelOrderBy]) {
-  suspiciousCases: allSuspiciouscases(orderBy: $orderBy) {
-    ...SuspiciousCaseFragment
-  }
-}
-    ${SuspiciousCaseFragmentFragmentDoc}`;
 export function getSdk(client: GraphQLClient) {
   return {
     pageMetaTags(variables: pageMetaTagsQueryVariables): Promise<pageMetaTagsQuery> {
@@ -1434,9 +1311,6 @@ export function getSdk(client: GraphQLClient) {
     },
     cases(variables?: casesQueryVariables): Promise<casesQuery> {
       return client.request<casesQuery>(print(casesDocument), variables);
-    },
-    suspiciousCases(variables?: suspiciousCasesQueryVariables): Promise<suspiciousCasesQuery> {
-      return client.request<suspiciousCasesQuery>(print(suspiciousCasesDocument), variables);
     }
   };
 }

@@ -10,17 +10,11 @@ import CasesList from '../components/cases/list'
 
 type HomePageProps = {
   meta: sdk.PageMetaTag[]
-  suspiciousCases: sdk.SuspiciousCase[]
   allCases: sdk.Case[]
   recentCases: sdk.Case[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({
-  meta,
-  suspiciousCases,
-  allCases,
-  recentCases,
-}) => {
+const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
   const filterCases = (casestatus: sdk.CaseStatus) =>
     allCases.filter((c) => c.casestatus === casestatus)
 
@@ -28,15 +22,12 @@ const HomePage: NextPage<HomePageProps> = ({
   const recoveredCases = filterCases('recovered')
   const deadCases = filterCases('dead')
 
-  const lastSuspiciousCasesNumber = suspiciousCases[0].number
-
   return (
     <>
       <SEO meta={meta} />
       <MainLayout>
         <Section title="Estadísticas generales">
           <CasesStats
-            suspiciousCases={lastSuspiciousCasesNumber}
             totalCases={allCases.length}
             activeCases={activeCases.length}
             recoveredCases={recoveredCases.length}
@@ -56,10 +47,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const allCases = await sdk.fetchCases({ first: 100 })
 
-  const suspiciousCases = await sdk.fetchSuspiciousCases({
-    orderBy: [sdk.SuspiciousCaseOrderBy.date_DESC],
-  })
-
   const recentCases = await sdk.fetchCases({
     orderBy: [sdk.CaseOrderBy.detected_DESC],
     first: 5,
@@ -68,7 +55,6 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       meta,
-      suspiciousCases,
       allCases,
       recentCases,
     },

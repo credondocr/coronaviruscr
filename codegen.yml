@@ -1,0 +1,16 @@
+schema:
+  - https://graphql.datocms.com:
+      headers:
+        Authorization: b5d7d10dacad064cb899ce0d988500
+
+documents: 'src/types.graphql'
+
+config:
+  namingConvention: keep
+
+generates:
+  src/generated/graphql.gen.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request

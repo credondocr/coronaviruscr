@@ -1,16 +1,15 @@
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
-import { fetchPageSEO, fetchCases } from '../lib/datocms'
-import { PageMetaTag, Case } from '../types/content'
+import * as sdk from '../lib/sdk'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Section from '../components/ui/section'
 import CasesList from '../components/cases/list'
 
 type CasesPageProps = {
-  meta: PageMetaTag[]
-  cases: Case[]
+  meta: sdk.PageMetaTag[]
+  cases: sdk.Case[]
 }
 
 const CasesPage: NextPage<CasesPageProps> = ({ meta, cases }) => {
@@ -27,8 +26,10 @@ const CasesPage: NextPage<CasesPageProps> = ({ meta, cases }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const meta = await fetchPageSEO('cases')
-  const cases = await fetchCases({ orderBy: 'detected_ASC' })
+  const meta = await sdk.fetchPageMetaTags({ name: 'cases' })
+  const cases = await sdk.fetchCases({
+    orderBy: [sdk.CaseOrderBy.detected_DESC],
+  })
 
   return {
     props: {

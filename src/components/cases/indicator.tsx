@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
-import { CaseStatus } from '../../types/content'
+import * as sdk from '../../lib/sdk'
 import { getIndicatorVariant } from '../../utils/format'
 
 type CaseIndicatorProps = {
-  status: CaseStatus
+  status: sdk.CaseStatus
 }
 
 const CaseIndicator: React.FC<CaseIndicatorProps> = ({ status, ...props }) => {

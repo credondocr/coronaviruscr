@@ -1,24 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
+import { renderMetaTags } from 'react-datocms'
 
-import { Meta } from '../types/content'
+import { PageMetaTag } from '../types/content'
 
-const SEO: React.FC<Meta> = ({ title, description, url, image }) => {
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="url" content={url} />
-      <meta name="image" content={image} />
+type SEOProps = {
+  meta: PageMetaTag[]
+}
 
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image} />
-
-      <meta name="twitter:card" content="summary_large_image" />
-    </Head>
-  )
+const SEO: React.FC<SEOProps> = ({ meta }) => {
+  return <Head>{renderMetaTags(meta)}</Head>
 }
 
 export default SEO

@@ -1,52 +1,69 @@
-/** @jsx jsx */
-import { jsx } from 'theme-ui'
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
-import { fetchCases } from '../lib/datocms'
-import { Meta, Case } from '../types/content'
+import { fetchPageSEO, fetchCases, fetchSuspiciousCases } from '../lib/datocms'
+import { PageMetaTag, Case, SuspiciousCase } from '../types/content'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
-import Stats from '../components/home/stats'
+import Section from '../components/ui/section'
+import CasesStats from '../components/cases/stats'
+import CasesList from '../components/cases/list'
 
 type HomePageProps = {
-  meta: Meta
-  cases: Case[]
+  meta: PageMetaTag[]
+  suspiciousCases: SuspiciousCase[]
+  allCases: Case[]
+  recentCases: Case[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
+const HomePage: NextPage<HomePageProps> = ({
+  meta,
+  suspiciousCases,
+  allCases,
+  recentCases,
+}) => {
   const filterCases = (casestatus: Case['casestatus']) =>
-    cases.filter((c) => c.casestatus === casestatus)
+    allCases.filter((c) => c.casestatus === casestatus)
 
   const activeCases = filterCases('active')
   const recoveredCases = filterCases('recovered')
   const deadCases = filterCases('dead')
 
+  const lastSuspiciousCasesNumber = suspiciousCases[0].number
+
   return (
-    <React.Fragment>
-      <SEO {...meta} />
+    <>
+      <SEO meta={meta} />
       <MainLayout>
-        <Stats
-          totalCases={cases.length}
-          activeCases={activeCases.length}
-          recoveredCases={recoveredCases.length}
-          deadCases={deadCases.length}
-        />
+        <Section title="Estadísticas generales">
+          <CasesStats
+            suspiciousCases={lastSuspiciousCasesNumber}
+            totalCases={allCases.length}
+            activeCases={activeCases.length}
+            recoveredCases={recoveredCases.length}
+            deadCases={deadCases.length}
+          />
+        </Section>
+        <Section title="Casos recientes">
+          <CasesList filters={false} cases={recentCases} />
+        </Section>
       </MainLayout>
-    </React.Fragment>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // @TODO: get this from a rest api sometime in the future
-  const meta = await import('../content/meta').then((m) => m.default)
-
-  const cases = await fetchCases()
+  const meta = await fetchPageSEO('home')
+  const suspiciousCases = await fetchSuspiciousCases({ orderBy: 'date_DESC' })
+  const allCases = await fetchCases()
+  const recentCases = await fetchCases({ orderBy: 'detected_DESC', first: 5 })
 
   return {
     props: {
       meta,
-      cases,
+      suspiciousCases,
+      allCases,
+      recentCases,
     },
   }
 }

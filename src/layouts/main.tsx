@@ -41,7 +41,7 @@ const MainLayout: React.FC = ({ children }) => {
             <Styled.a
               target="_blank"
               rel="noopener noreferrer"
-              href="http://credondocr.com/"
+              href="http://cesarredondo.dev/"
             >
               Cesar Redondo
             </Styled.a>

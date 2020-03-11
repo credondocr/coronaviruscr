@@ -11,12 +11,13 @@ import CasesList from '../components/cases/list'
 
 type HomePageProps = {
   meta: PageMetaTag[]
-  cases: Case[]
+  allCases: Case[]
+  recentCases: Case[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
+const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
   const filterCases = (casestatus: Case['casestatus']) =>
-    cases.filter((c) => c.casestatus === casestatus)
+    allCases.filter((c) => c.casestatus === casestatus)
 
   const activeCases = filterCases('active')
   const recoveredCases = filterCases('recovered')
@@ -28,14 +29,14 @@ const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
       <MainLayout>
         <Section title="Estadísticas generales">
           <CasesStats
-            totalCases={cases.length}
+            totalCases={allCases.length}
             activeCases={activeCases.length}
             recoveredCases={recoveredCases.length}
             deadCases={deadCases.length}
           />
         </Section>
         <Section title="Casos recientes">
-          <CasesList filters={false} cases={cases} />
+          <CasesList filters={false} cases={recentCases} />
         </Section>
       </MainLayout>
     </>
@@ -44,12 +45,14 @@ const HomePage: NextPage<HomePageProps> = ({ meta, cases }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const meta = await fetchPageSEO('home')
-  const cases = await fetchCases({ orderBy: 'detected_DESC', first: 5 })
+  const allCases = await fetchCases()
+  const recentCases = await fetchCases({ orderBy: 'detected_DESC', first: 5 })
 
   return {
     props: {
       meta,
-      cases,
+      allCases,
+      recentCases,
     },
   }
 }

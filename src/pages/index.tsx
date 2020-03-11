@@ -27,15 +27,22 @@ const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
     <>
       <SEO meta={meta} />
       <MainLayout>
-        <Section title="Mapa">
-          <CasesMap cases={recentCases} />
-        </Section>
         <Section title="Estadísticas generales">
           <CasesStats
             totalCases={allCases.length}
             activeCases={activeCases.length}
             recoveredCases={recoveredCases.length}
             deadCases={deadCases.length}
+          />
+        </Section>
+        <Section title="Mapa">
+          <CasesMap
+            // temp data while get CMS/graphql updated
+            sampleData={[
+              { ...recentCases[0], lat: 10.0274898, lng: -84.2224415 },
+              { ...recentCases[1], lat: 10.5034994, lng: -83.9256726 },
+            ]}
+            cases={recentCases}
           />
         </Section>
         <Section title="Casos recientes">

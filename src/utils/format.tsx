@@ -5,7 +5,7 @@ import moment from 'moment'
 import flag from 'country-code-emoji'
 import { IoMdFemale, IoMdMale } from 'react-icons/io'
 
-import { Case } from '../types/content'
+import * as sdk from '../lib/sdk'
 
 moment.locale('ES')
 
@@ -14,7 +14,7 @@ export const formatDate = (date?: Date): string =>
 
 export const formatCountry = (iso: string): string => flag(iso)
 
-export const formatStatus = (status: Case['casestatus']): string => {
+export const formatStatus = (status: sdk.CaseStatus): string => {
   switch (status) {
     case 'active':
       return 'Activo'
@@ -27,10 +27,10 @@ export const formatStatus = (status: Case['casestatus']): string => {
   }
 }
 
-export const getIndicatorVariant = (status: Case['casestatus']): string =>
+export const getIndicatorVariant = (status: sdk.CaseStatus): string =>
   `components.cases.indicator.${status}`
 
-export const getGenderIcon = (gender: Case['gender']): React.ReactNode => {
+export const getGenderIcon = (gender: sdk.CaseGender): React.ReactNode => {
   switch (gender) {
     case 'f':
       return <IoMdFemale sx={{ color: 'female' }} />

@@ -2,7 +2,7 @@
 import { jsx } from 'theme-ui'
 import React from 'react'
 
-import { Case, CaseStatus } from '../../types/content'
+import * as sdk from '../../lib/sdk'
 import Select from '../ui/select'
 import Table from '../ui/table'
 import * as format from '../../utils/format'
@@ -11,13 +11,13 @@ import Button from '../ui/button'
 
 type CasesListProps = {
   filters?: boolean
-  cases: Case[]
+  cases: sdk.Case[]
 }
 
-type StatusFilter = 'all' | CaseStatus
+type StatusFilter = 'all' | sdk.CaseStatus
 
 const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
-  const statuses: CaseStatus[] = ['active', 'recovered', 'dead']
+  const statuses: sdk.CaseStatus[] = ['active', 'recovered', 'dead']
   const [statusFilter, setStatusFilter] = React.useState<StatusFilter>('all')
 
   const onStatusChange = React.useCallback(
@@ -95,7 +95,7 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
               <option key={status} value={status}>
                 {status === 'all'
                   ? 'Todos'
-                  : format.formatStatus(status as CaseStatus)}
+                  : format.formatStatus(status as sdk.CaseStatus)}
               </option>
             ))}
           </Select>
@@ -111,7 +111,10 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
             key: 'casestatus',
             renderTitle: () => '',
             renderContent: (c) => (
-              <CaseIndicator status={c.casestatus} sx={{ mr: 2 }} />
+              <CaseIndicator
+                status={c.casestatus as sdk.CaseStatus}
+                sx={{ mr: 2 }}
+              />
             ),
           },
           {
@@ -127,7 +130,8 @@ const CasesList: React.FC<CasesListProps> = ({ filters = true, cases }) => {
           {
             key: 'gender',
             renderTitle: () => 'Género',
-            renderContent: (c) => format.getGenderIcon(c.gender),
+            renderContent: (c) =>
+              format.getGenderIcon(c.gender as sdk.CaseGender),
           },
         ]}
       />

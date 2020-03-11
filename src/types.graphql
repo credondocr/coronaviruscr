@@ -1,0 +1,40 @@
+fragment PageMetaTagFragment on Tag {
+  attributes
+  content
+  tag
+}
+
+query pageMetaTags($name: String!) {
+  page(filter: { name: { eq: $name } }) {
+    meta: _seoMetaTags {
+      ...PageMetaTagFragment
+    }
+  }
+}
+
+fragment CaseFragment on CaseRecord {
+  id
+  detected
+  updated
+  casestatus
+  gender
+  age
+}
+
+query cases($orderBy: [CaseModelOrderBy], $first: IntType) {
+  cases: allCases(orderBy: $orderBy, first: $first) {
+    ...CaseFragment
+  }
+}
+
+fragment SuspiciousCaseFragment on SuspiciouscaseRecord {
+  id
+  date
+  number
+}
+
+query suspiciousCases($orderBy: [SuspiciouscaseModelOrderBy]) {
+  suspiciousCases: allSuspiciouscases(orderBy: $orderBy) {
+    ...SuspiciousCaseFragment
+  }
+}

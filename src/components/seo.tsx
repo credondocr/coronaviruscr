@@ -1,15 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
-import { renderMetaTags } from 'react-datocms'
+import { renderMetaTags, SeoMetaTagType } from 'react-datocms'
 
-import { PageMetaTag } from '../types/content'
+import * as sdk from '../lib/sdk'
 
 type SEOProps = {
-  meta: PageMetaTag[]
+  meta: sdk.PageMetaTag[]
 }
 
 const SEO: React.FC<SEOProps> = ({ meta }) => {
-  return <Head>{renderMetaTags(meta)}</Head>
+  return <Head>{renderMetaTags(meta as SeoMetaTagType[])}</Head>
 }
 
 export default SEO

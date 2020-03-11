@@ -1,8 +1,7 @@
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 
-import { fetchPageSEO, fetchCases, fetchSuspiciousCases } from '../lib/datocms'
-import { PageMetaTag, Case, SuspiciousCase } from '../types/content'
+import * as sdk from '../lib/sdk'
 import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Section from '../components/ui/section'
@@ -10,10 +9,10 @@ import CasesStats from '../components/cases/stats'
 import CasesList from '../components/cases/list'
 
 type HomePageProps = {
-  meta: PageMetaTag[]
-  suspiciousCases: SuspiciousCase[]
-  allCases: Case[]
-  recentCases: Case[]
+  meta: sdk.PageMetaTag[]
+  suspiciousCases: sdk.SuspiciousCase[]
+  allCases: sdk.Case[]
+  recentCases: sdk.Case[]
 }
 
 const HomePage: NextPage<HomePageProps> = ({
@@ -22,7 +21,7 @@ const HomePage: NextPage<HomePageProps> = ({
   allCases,
   recentCases,
 }) => {
-  const filterCases = (casestatus: Case['casestatus']) =>
+  const filterCases = (casestatus: sdk.CaseStatus) =>
     allCases.filter((c) => c.casestatus === casestatus)
 
   const activeCases = filterCases('active')
@@ -53,10 +52,18 @@ const HomePage: NextPage<HomePageProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const meta = await fetchPageSEO('home')
-  const suspiciousCases = await fetchSuspiciousCases({ orderBy: 'date_DESC' })
-  const allCases = await fetchCases()
-  const recentCases = await fetchCases({ orderBy: 'detected_DESC', first: 5 })
+  const meta = await sdk.fetchPageMetaTags({ name: 'home' })
+
+  const allCases = await sdk.fetchCases()
+
+  const suspiciousCases = await sdk.fetchSuspiciousCases({
+    orderBy: [sdk.SuspiciousCaseOrderBy.date_DESC],
+  })
+
+  const recentCases = await sdk.fetchCases({
+    orderBy: [sdk.CaseOrderBy.detected_DESC],
+    first: 5,
+  })
 
   return {
     props: {

@@ -1,9 +1,10 @@
 import { GraphQLClient } from 'graphql-request'
 
 import * as graphql from '../generated/graphql.gen'
+import env from '../config/env'
 
 const client = new GraphQLClient('https://graphql.datocms.com')
-client.setHeader('authorization', 'b5d7d10dacad064cb899ce0d988500')
+client.setHeader('authorization', env.DATO_CMS_READ_TOKEN)
 
 const sdk = graphql.getSdk(client)
 

@@ -17,7 +17,6 @@ const token =
 
 const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
   const markers = sampleData || cases
-  console.log(markers)
   const [viewport, setViewport] = useState({
     latitude: defaultCenter.lat,
     longitude: defaultCenter.lng,

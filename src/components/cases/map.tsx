@@ -6,6 +6,7 @@ import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl'
 import * as sdk from '../../lib/sdk'
 import CaseIndicator from './indicator'
 import env from '../../config/env'
+import Card from '../ui/card'
 
 type CasesMapProps = {
   cases: sdk.Case[]
@@ -23,27 +24,29 @@ const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
     zoom: defaultZoom,
   })
   return (
-    <ReactMapGL
-      mapboxApiAccessToken={env.MAP_BOX_TOKEN}
-      width="100%"
-      height="500px"
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={setViewport}
-      {...viewport}
-    >
-      {markers.map((marker) => (
-        <Marker
-          key={marker.id}
-          longitude={marker.lng}
-          latitude={marker.lat}
-          captureDrag={false}
-          captureDoubleClick={false}
-        >
-          <CaseIndicator status={marker.casestatus} />
-        </Marker>
-      ))}
-      <NavigationControl sx={{ variant: 'components.map.navigation' }} />
-    </ReactMapGL>
+    <Card>
+      <ReactMapGL
+        mapboxApiAccessToken={env.MAP_BOX_TOKEN}
+        width="100%"
+        height="500px"
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        onViewportChange={setViewport}
+        {...viewport}
+      >
+        {markers.map((marker) => (
+          <Marker
+            key={marker.id}
+            longitude={marker.lng}
+            latitude={marker.lat}
+            captureDrag={false}
+            captureDoubleClick={false}
+          >
+            <CaseIndicator status={marker.casestatus} />
+          </Marker>
+        ))}
+        <NavigationControl sx={{ variant: 'components.map.navigation' }} />
+      </ReactMapGL>
+    </Card>
   )
 }
 

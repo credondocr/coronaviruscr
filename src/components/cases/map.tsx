@@ -26,12 +26,12 @@ const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
   return (
     <Card>
       <ReactMapGL
+        {...viewport}
         mapboxApiAccessToken={env.MAP_BOX_TOKEN}
         width="100%"
         height="500px"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={setViewport}
-        {...viewport}
       >
         {markers.map((marker) => (
           <Marker

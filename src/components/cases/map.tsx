@@ -2,6 +2,7 @@
 import { jsx } from 'theme-ui'
 import React, { useState } from 'react'
 import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl'
+
 import * as sdk from '../../lib/sdk'
 import CaseIndicator from './indicator'
 
@@ -28,8 +29,8 @@ const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
       width="100%"
       height="500px"
       mapStyle="mapbox://styles/mapbox/dark-v9"
-      {...viewport}
       onViewportChange={setViewport}
+      {...viewport}
     >
       {markers.map((marker) => (
         <Marker
@@ -42,9 +43,7 @@ const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
           <CaseIndicator status={marker.casestatus} />
         </Marker>
       ))}
-      <div sx={{ variant: 'components.map.navigation' }}>
-        <NavigationControl />
-      </div>
+      <NavigationControl sx={{ variant: 'components.map.navigation' }} />
     </ReactMapGL>
   )
 }

@@ -1,8 +1,8 @@
 const map = {
   navigation: {
     position: 'absolute',
-    top: '20px',
-    right: '20px',
+    top: 3,
+    right: 3,
   },
 }
 

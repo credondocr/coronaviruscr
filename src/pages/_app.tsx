@@ -2,6 +2,7 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import router from 'next/router'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
 import * as analytics from '../lib/analytics'
 import ProgressBar from '../components/ui/progress-bar'
 

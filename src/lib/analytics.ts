@@ -1,7 +1,9 @@
 import ga, { EventArgs } from 'react-ga'
 
+import env from '../config/env'
+
 export const init = (): void => {
-  ga.initialize('UA-160331888-1')
+  ga.initialize(env.GOOGLE_ANALYTICS_TRACKING_CODE)
 }
 
 export const logPageView = (): void => {

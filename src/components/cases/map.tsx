@@ -1,7 +1,8 @@
-import React from 'react'
-import GoogleMapReact from 'google-map-react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import React, { useState } from 'react'
+import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl'
 import * as sdk from '../../lib/sdk'
-import { mapStyles } from '../../config/theme/components/map'
 import CaseIndicator from './indicator'
 
 type CasesMapProps = {
@@ -9,33 +10,43 @@ type CasesMapProps = {
   sampleData?: any[] // temp data while get CMS/graphql updated
 }
 
-const Marker = ({ status }: any) => <CaseIndicator status={status} />
-
-const APIKey = 'AIzaSyDy5yxvYSkrkLn2QBrKXaksrr2yyVrPmNo'
 const defaultCenter = { lat: 9.9359506, lng: -84.1271644 }
-const defaultZoom = 8
+const defaultZoom = 7
+const token =
+  'pk.eyJ1IjoiYXNvdG9nMjAiLCJhIjoiY2s3bnlnaDlhMDNrazNlbWloemRtMTl6MyJ9.JVZCh2T-fHZ7-MmT6l59DA'
 
 const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
   const markers = sampleData || cases
+  console.log(markers)
+  const [viewport, setViewport] = useState({
+    latitude: defaultCenter.lat,
+    longitude: defaultCenter.lng,
+    zoom: defaultZoom,
+  })
   return (
-    <>
-      <div style={{ height: '600px', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: APIKey }}
-          defaultCenter={defaultCenter}
-          defaultZoom={defaultZoom}
-          options={{ styles: mapStyles }}
+    <ReactMapGL
+      mapboxApiAccessToken={token}
+      width="100%"
+      height="500px"
+      mapStyle="mapbox://styles/mapbox/dark-v9"
+      {...viewport}
+      onViewportChange={setViewport}
+    >
+      {markers.map((marker) => (
+        <Marker
+          key={marker.id}
+          longitude={marker.lng}
+          latitude={marker.lat}
+          captureDrag={false}
+          captureDoubleClick={false}
         >
-          {markers.map((marker) => (
-            <Marker
-              lat={marker.lat}
-              lng={marker.lng}
-              status={marker.casestatus}
-            />
-          ))}
-        </GoogleMapReact>
+          <CaseIndicator status={marker.casestatus} />
+        </Marker>
+      ))}
+      <div sx={{ variant: 'components.map.navigation' }}>
+        <NavigationControl />
       </div>
-    </>
+    </ReactMapGL>
   )
 }
 

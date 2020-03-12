@@ -9,12 +9,12 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
-    "@types/google-map-react": "^1.1.5",
+    "@types/react-map-gl": "^5.2.0",
     "country-code-emoji": "^1.0.0",
     "framer-motion": "^1.9.1",
-    "google-map-react": "^1.1.6",
     "graphql-request": "^1.8.2",
     "isomorphic-unfetch": "^3.0.0",
+    "mapbox-gl": "^1.8.1",
     "moment": "^2.24.0",
     "next": "^9.3.0",
     "nprogress": "^0.2.0",
@@ -23,6 +23,7 @@
     "react-dom": "^16.13.0",
     "react-ga": "^2.7.0",
     "react-icons": "^3.9.0",
+    "react-map-gl": "^5.2.3",
     "theme-ui": "^0.3.1"
   },
   "devDependencies": {

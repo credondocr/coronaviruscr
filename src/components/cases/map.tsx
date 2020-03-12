@@ -5,6 +5,7 @@ import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl'
 
 import * as sdk from '../../lib/sdk'
 import CaseIndicator from './indicator'
+import env from '../../config/env'
 
 type CasesMapProps = {
   cases: sdk.Case[]
@@ -13,8 +14,6 @@ type CasesMapProps = {
 
 const defaultCenter = { lat: 9.9359506, lng: -84.1271644 }
 const defaultZoom = 7
-const token =
-  'pk.eyJ1IjoiYXNvdG9nMjAiLCJhIjoiY2s3bnlnaDlhMDNrazNlbWloemRtMTl6MyJ9.JVZCh2T-fHZ7-MmT6l59DA'
 
 const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
   const markers = sampleData || cases
@@ -25,7 +24,7 @@ const CasesMap: React.FC<CasesMapProps> = ({ cases, sampleData }) => {
   })
   return (
     <ReactMapGL
-      mapboxApiAccessToken={token}
+      mapboxApiAccessToken={env.MAP_BOX_TOKEN}
       width="100%"
       height="500px"
       mapStyle="mapbox://styles/mapbox/dark-v9"

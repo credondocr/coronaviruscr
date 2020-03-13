@@ -22,6 +22,7 @@ type CasesMapProps = {
 const defaultCenter = { lat: 9.9359506, lng: -84.1271644 }
 const defaultZoom = 7
 
+// based on https://www.mapbox.com/boundaries configuration
 const worldviewFilter = [
   'all',
   ['==', ['get', 'iso_3166_1'], 'CR'],

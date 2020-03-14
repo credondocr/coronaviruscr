@@ -40,16 +40,6 @@ const HomePage: NextPage<HomePageProps> = ({
             deadCases={deadCases.length}
           />
         </Section>
-        <Section title="Mapa">
-          <CasesMap
-            // temp data while get CMS/graphql updated
-            sampleData={[
-              { ...recentCases[0], lat: 10.0274898, lng: -84.2224415 },
-              { ...recentCases[1], lat: 10.5034994, lng: -83.9256726 },
-            ]}
-            cases={recentCases}
-          />
-        </Section>
         <Section title="Casos recientes">
           <CasesList filters={false} cases={recentCases} />
         </Section>

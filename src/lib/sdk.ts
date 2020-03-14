@@ -19,13 +19,22 @@ export const fetchPageMetaTags = async (
 }
 
 export type Case = graphql.CaseFragmentFragment
+export type News = graphql.NewsFragmentFragment
 export type CaseStatus = 'active' | 'recovered' | 'dead'
 export type CaseGender = 'f' | 'm'
 export const CaseOrderBy = graphql.CaseModelOrderBy
+export const NewsOrderBy = graphql.NewsModelOrderBy
 
 export const fetchCases = async (
   variables?: graphql.casesQueryVariables
 ): Promise<Case[]> => {
   const { cases } = await sdk.cases(variables)
   return cases
+}
+
+export const fetchNews = async (
+  variables?: graphql.newsQueryVariables
+): Promise<News[]> => {
+  const { news } = await sdk.news(variables)
+  return news
 }

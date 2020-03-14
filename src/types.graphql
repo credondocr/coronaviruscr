@@ -21,8 +21,24 @@ fragment CaseFragment on CaseRecord {
   age
 }
 
+fragment NewsFragment on NewsRecord {
+  id
+  createdAt
+  title
+  url
+  source {
+    name
+  }
+}
+
 query cases($orderBy: [CaseModelOrderBy], $first: IntType) {
   cases: allCases(orderBy: $orderBy, first: $first) {
     ...CaseFragment
+  }
+}
+
+query news($orderBy: [NewsModelOrderBy], $first: IntType) {
+  news: allNews(orderBy: $orderBy, first: $first) {
+    ...NewsFragment
   }
 }

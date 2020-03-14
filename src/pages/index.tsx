@@ -13,16 +13,21 @@ type HomePageProps = {
   meta: sdk.PageMetaTag[]
   allCases: sdk.Case[]
   recentCases: sdk.Case[]
+  recentNews: sdk.News[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
+const HomePage: NextPage<HomePageProps> = ({
+  meta,
+  allCases,
+  recentCases,
+  recentNews,
+}) => {
   const filterCases = (casestatus: sdk.CaseStatus) =>
     allCases.filter((c) => c.casestatus === casestatus)
-
   const activeCases = filterCases('active')
   const recoveredCases = filterCases('recovered')
   const deadCases = filterCases('dead')
-
+  console.log(recentNews) // TODO: implement recent news blocks cta etc ...
   return (
     <>
       <SEO meta={meta} />
@@ -63,11 +68,17 @@ export const getStaticProps: GetStaticProps = async () => {
     first: 5,
   })
 
+  const recentNews = await sdk.fetchNews({
+    orderBy: [sdk.NewsOrderBy.createdAt_DESC],
+    first: 3,
+  })
+
   return {
     props: {
       meta,
       allCases,
       recentCases,
+      recentNews,
     },
   }
 }

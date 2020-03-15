@@ -50,7 +50,7 @@ const ui = {
   },
   table: {
     wrapper: {
-      overflow: 'scroll',
+      overflow: 'auto',
       boxShadow: 'default',
       bg: 'backgroundSecondary',
       borderRadius: 'normal',

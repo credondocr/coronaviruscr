@@ -2,6 +2,21 @@ const news = {
   link: {
     color: 'text',
   },
+  card: {
+    container: {
+      display: 'grid',
+      gridGap: 5,
+      gridTemplateColumns: ['repeat(3, 1fr)'],
+    },
+  },
+  title: {
+    color: 'text',
+    display: 'block',
+    textDecoration: 'none',
+  },
+  source: {
+    color: 'textSecondary',
+  },
   list: {
     toolbar: {
       container: {

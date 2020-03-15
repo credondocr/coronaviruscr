@@ -2,7 +2,7 @@
 import { jsx, Styled } from 'theme-ui'
 
 type CardProps = {
-  title: string
+  title?: string
 }
 
 const Card: React.FC<CardProps> = ({ title, children, ...props }) => {

@@ -78,14 +78,18 @@ const NewsList: React.FC<NewsListProps> = ({ news }) => {
             ),
           },
           {
-            key: 'createdAt',
-            renderTitle: () => 'Fecha',
-            renderContent: (c) => format.formatDate(c.createdAt),
-          },
-          {
             key: 'source',
             renderTitle: () => 'Fuente',
-            renderContent: (c) => c.source?.name,
+            renderContent: (c) => (
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={c.url || ''}
+                sx={{ color: 'text' }}
+              >
+                {c.source?.name} {format.formatDate(c.createdAt)}
+              </a>
+            ),
           },
         ]}
       />

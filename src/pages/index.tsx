@@ -7,14 +7,21 @@ import MainLayout from '../layouts/main'
 import Section from '../components/ui/section'
 import CasesStats from '../components/cases/stats'
 import CasesList from '../components/cases/list'
+import RecentNews from '../components/news/recent'
 
 type HomePageProps = {
   meta: sdk.PageMetaTag[]
   allCases: sdk.Case[]
   recentCases: sdk.Case[]
+  recentNews: sdk.News[]
 }
 
-const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
+const HomePage: NextPage<HomePageProps> = ({
+  meta,
+  allCases,
+  recentCases,
+  recentNews,
+}) => {
   const filterCases = (casestatus: sdk.CaseStatus) =>
     allCases.filter((c) => c.casestatus === casestatus)
 
@@ -34,6 +41,9 @@ const HomePage: NextPage<HomePageProps> = ({ meta, allCases, recentCases }) => {
             deadCases={deadCases.length}
           />
         </Section>
+        <Section title="Noticias recientes">
+          <RecentNews recentNews={recentNews} />
+        </Section>
         <Section title="Casos recientes">
           <CasesList filters={false} cases={recentCases} />
         </Section>
@@ -52,11 +62,17 @@ export const getStaticProps: GetStaticProps = async () => {
     first: 5,
   })
 
+  const recentNews = await sdk.fetchNews({
+    orderBy: [sdk.NewsOrderBy.createdAt_DESC],
+    first: 3,
+  })
+
   return {
     props: {
       meta,
       allCases,
       recentCases,
+      recentNews,
     },
   }
 }

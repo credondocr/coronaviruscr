@@ -16,12 +16,8 @@ const ui = {
         mt: 15,
       },
     },
-    titleContainer: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      mb: 8,
-    },
     title: {
+      mb: 8,
       '&:after': {
         content: '""',
         display: 'block',
@@ -30,9 +26,6 @@ const ui = {
         bg: 'primary',
         mt: 1,
       },
-    },
-    actions: {
-      fontSize: 1,
     },
   },
   card: {

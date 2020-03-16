@@ -5,6 +5,7 @@ import Card from '../ui/card'
 
 type CasesStatsProps = {
   totalCases: number
+  discardedCases: number
   activeCases: number
   recoveredCases: number
   deadCases: number
@@ -12,6 +13,7 @@ type CasesStatsProps = {
 
 const CasesStats: React.FC<CasesStatsProps> = ({
   totalCases,
+  discardedCases,
   activeCases,
   recoveredCases,
   deadCases,
@@ -23,6 +25,15 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos confirmados"
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>{totalCases}</span>
+      </Card>
+
+      <Card
+        sx={{ variant: 'components.cases.stats.mainStat' }}
+        title="Casos descartados"
+      >
+        <span sx={{ variant: 'components.ui.text.stat' }}>
+          {discardedCases}
+        </span>
       </Card>
 
       <Card

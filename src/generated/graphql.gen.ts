@@ -1434,9 +1434,23 @@ export type pageMetaTagsQuery = (
   )> }
 );
 
-export type CaseFragmentFragment = (
-  { __typename?: 'CaseRecord' }
-  & Pick<CaseRecord, 'id' | 'detected' | 'updated' | 'casestatus' | 'gender' | 'age'>
+export type ReportFragmentFragment = (
+  { __typename?: 'ReportRecord' }
+  & Pick<ReportRecord, 'date' | 'confirmedCases' | 'discardedCases' | 'activeCases' | 'recoveredCases' | 'deceasedCases' | 'womenCases' | 'menCases' | 'juvenileCases' | 'adultCases' | 'elderlyCases' | 'costaRicanCases' | 'foreignersCases' | 'casesInSanJose' | 'casesInAlajuela' | 'casesInCartago' | 'casesInHeredia' | 'casesInGuanacaste' | 'casesInPuntarenas' | 'casesInLimon'>
+);
+
+export type reportsQueryVariables = {
+  orderBy?: Maybe<Array<Maybe<ReportModelOrderBy>>>;
+  first?: Maybe<Scalars['IntType']>;
+};
+
+
+export type reportsQuery = (
+  { __typename?: 'Query' }
+  & { reports: Array<(
+    { __typename?: 'ReportRecord' }
+    & ReportFragmentFragment
+  )> }
 );
 
 export type NewsFragmentFragment = (
@@ -1445,20 +1459,6 @@ export type NewsFragmentFragment = (
   & { source: Maybe<(
     { __typename?: 'SourceRecord' }
     & Pick<SourceRecord, 'name'>
-  )> }
-);
-
-export type casesQueryVariables = {
-  orderBy?: Maybe<Array<Maybe<CaseModelOrderBy>>>;
-  first?: Maybe<Scalars['IntType']>;
-};
-
-
-export type casesQuery = (
-  { __typename?: 'Query' }
-  & { cases: Array<(
-    { __typename?: 'CaseRecord' }
-    & CaseFragmentFragment
   )> }
 );
 
@@ -1483,14 +1483,28 @@ export const PageMetaTagFragmentFragmentDoc = gql`
   tag
 }
     `;
-export const CaseFragmentFragmentDoc = gql`
-    fragment CaseFragment on CaseRecord {
-  id
-  detected
-  updated
-  casestatus
-  gender
-  age
+export const ReportFragmentFragmentDoc = gql`
+    fragment ReportFragment on ReportRecord {
+  date
+  confirmedCases
+  discardedCases
+  activeCases
+  recoveredCases
+  deceasedCases
+  womenCases
+  menCases
+  juvenileCases
+  adultCases
+  elderlyCases
+  costaRicanCases
+  foreignersCases
+  casesInSanJose
+  casesInAlajuela
+  casesInCartago
+  casesInHeredia
+  casesInGuanacaste
+  casesInPuntarenas
+  casesInLimon
 }
     `;
 export const NewsFragmentFragmentDoc = gql`
@@ -1513,13 +1527,13 @@ export const pageMetaTagsDocument = gql`
   }
 }
     ${PageMetaTagFragmentFragmentDoc}`;
-export const casesDocument = gql`
-    query cases($orderBy: [CaseModelOrderBy], $first: IntType) {
-  cases: allCases(orderBy: $orderBy, first: $first) {
-    ...CaseFragment
+export const reportsDocument = gql`
+    query reports($orderBy: [ReportModelOrderBy], $first: IntType) {
+  reports: allReports(orderBy: $orderBy, first: $first) {
+    ...ReportFragment
   }
 }
-    ${CaseFragmentFragmentDoc}`;
+    ${ReportFragmentFragmentDoc}`;
 export const newsDocument = gql`
     query news($orderBy: [NewsModelOrderBy], $first: IntType) {
   news: allNews(orderBy: $orderBy, first: $first) {
@@ -1532,8 +1546,8 @@ export function getSdk(client: GraphQLClient) {
     pageMetaTags(variables: pageMetaTagsQueryVariables): Promise<pageMetaTagsQuery> {
       return client.request<pageMetaTagsQuery>(print(pageMetaTagsDocument), variables);
     },
-    cases(variables?: casesQueryVariables): Promise<casesQuery> {
-      return client.request<casesQuery>(print(casesDocument), variables);
+    reports(variables?: reportsQueryVariables): Promise<reportsQuery> {
+      return client.request<reportsQuery>(print(reportsDocument), variables);
     },
     news(variables?: newsQueryVariables): Promise<newsQuery> {
       return client.request<newsQuery>(print(newsDocument), variables);

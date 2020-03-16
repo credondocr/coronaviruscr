@@ -2,6 +2,8 @@ import { GraphQLClient } from 'graphql-request'
 
 import * as graphql from '../generated/graphql.gen'
 import env from '../config/env'
+import { FormattedReport } from '../types/content'
+import { formatReport } from '../utils/format'
 
 const client = new GraphQLClient('https://graphql.datocms.com')
 client.setHeader('authorization', env.DATO_CMS_READ_TOKEN)
@@ -18,20 +20,18 @@ export const fetchPageMetaTags = async (
   return page.meta
 }
 
-export type Case = graphql.CaseFragmentFragment
-export type CaseStatus = 'active' | 'recovered' | 'dead'
-export type CaseGender = 'f' | 'm'
-export const CaseOrderBy = graphql.CaseModelOrderBy
+export type Report = graphql.ReportFragmentFragment
+export const ReportOrderBy = graphql.ReportModelOrderBy
+
+export const fetchReports = async (
+  variables?: graphql.reportsQueryVariables
+): Promise<FormattedReport[]> => {
+  const { reports } = await sdk.reports(variables)
+  return reports.map(formatReport)
+}
 
 export type News = graphql.NewsFragmentFragment
 export const NewsOrderBy = graphql.NewsModelOrderBy
-
-export const fetchCases = async (
-  variables?: graphql.casesQueryVariables
-): Promise<Case[]> => {
-  const { cases } = await sdk.cases(variables)
-  return cases
-}
 
 export const fetchNews = async (
   variables?: graphql.newsQueryVariables

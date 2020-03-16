@@ -12,15 +12,34 @@ query pageMetaTags($name: String!) {
   }
 }
 
-fragment CaseFragment on CaseRecord {
-  id
-  detected
-  updated
-  casestatus
-  gender
-  age
+fragment ReportFragment on ReportRecord {
+  date
+  confirmedCases
+  discardedCases
+  activeCases
+  recoveredCases
+  deceasedCases
+  womenCases
+  menCases
+  juvenileCases
+  adultCases
+  elderlyCases
+  costaRicanCases
+  foreignersCases
+  casesInSanJose
+  casesInAlajuela
+  casesInCartago
+  casesInHeredia
+  casesInGuanacaste
+  casesInPuntarenas
+  casesInLimon
 }
 
+query reports($orderBy: [ReportModelOrderBy], $first: IntType) {
+  reports: allReports(orderBy: $orderBy, first: $first) {
+    ...ReportFragment
+  }
+}
 
 fragment NewsFragment on NewsRecord {
   id
@@ -32,15 +51,8 @@ fragment NewsFragment on NewsRecord {
   }
 }
 
-query cases($orderBy: [CaseModelOrderBy], $first: IntType) {
-  cases: allCases(orderBy: $orderBy, first: $first) {
-    ...CaseFragment
-  }
-}
-
 query news($orderBy: [NewsModelOrderBy], $first: IntType) {
   news: allNews(orderBy: $orderBy, first: $first) {
     ...NewsFragment
   }
 }
-

@@ -31,10 +31,6 @@ const links = [
     path: '/',
   },
   {
-    title: 'Casos',
-    path: '/casos',
-  },
-  {
     title: 'Noticias',
     path: '/noticias',
   },

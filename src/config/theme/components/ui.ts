@@ -18,14 +18,12 @@ const ui = {
     },
     title: {
       mb: 8,
-      '&:after': {
-        content: '""',
-        display: 'block',
-        width: 100,
-        height: 2,
-        bg: 'primary',
-        mt: 1,
-      },
+      display: 'flex',
+      alignItems: 'center',
+    },
+    icon: {
+      color: 'primary',
+      mr: 2,
     },
   },
   card: {

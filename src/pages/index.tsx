@@ -1,5 +1,6 @@
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
+import { FaChartLine, FaRegClock } from 'react-icons/fa'
 
 import * as sdk from '../lib/sdk'
 import * as content from '../types/content'
@@ -22,7 +23,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
     <>
       <SEO meta={meta} />
       <MainLayout>
-        <Section>
+        <Section icon={FaChartLine} title="Estadísticas generales">
           <CasesStats
             totalCases={lastReport.confirmedCases}
             discardedCases={lastReport.discardedCases}
@@ -31,7 +32,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
             deadCases={lastReport.byStatus.recovered}
           />
         </Section>
-        <Section title="Noticias recientes">
+        <Section icon={FaRegClock} title="Noticias recientes">
           <RecentNews recentNews={recentNews} />
         </Section>
       </MainLayout>

@@ -12,10 +12,10 @@ export type Scalars = {
   DateTime: any;
   BooleanType: any;
   ItemId: any;
+  FloatType: any;
   IntType: any;
   Date: any;
   UploadId: any;
-  FloatType: any;
   CustomData: any;
   MetaTagAttributes: any;
 };
@@ -36,6 +36,7 @@ export type CaseModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
+  location?: Maybe<LatLonFilter>;
   news?: Maybe<LinksFilter>;
   nationality?: Maybe<StringFilter>;
   age?: Maybe<IntegerFilter>;
@@ -98,6 +99,7 @@ export type CaseRecord = {
   detected?: Maybe<Scalars['Date']>;
   gender?: Maybe<Scalars['String']>;
   id: Scalars['ItemId'];
+  location?: Maybe<LatLonField>;
   nationality?: Maybe<Scalars['String']>;
   news: Array<NewsRecord>;
   updated?: Maybe<Scalars['Date']>;
@@ -548,6 +550,23 @@ export enum ItemStatus {
   published = 'published'
 }
 
+export type LatLonField = {
+   __typename?: 'LatLonField';
+  latitude?: Maybe<Scalars['FloatType']>;
+  longitude?: Maybe<Scalars['FloatType']>;
+};
+
+export type LatLonFilter = {
+  near?: Maybe<LatLonNearFilter>;
+  exists?: Maybe<Scalars['BooleanType']>;
+};
+
+export type LatLonNearFilter = {
+  latitude: Scalars['FloatType'];
+  longitude: Scalars['FloatType'];
+  radius: Scalars['FloatType'];
+};
+
 export type LinkFilter = {
   eq?: Maybe<Scalars['ItemId']>;
   neq?: Maybe<Scalars['ItemId']>;
@@ -713,17 +732,20 @@ export type Query = {
   _allCasesMeta: CollectionMetadata;
   _allNewsMeta: CollectionMetadata;
   _allPagesMeta: CollectionMetadata;
+  _allReportsMeta: CollectionMetadata;
   _allSourcesMeta: CollectionMetadata;
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   _site: Site;
   allCases: Array<CaseRecord>;
   allNews: Array<NewsRecord>;
   allPages: Array<PageRecord>;
+  allReports: Array<ReportRecord>;
   allSources: Array<SourceRecord>;
   allUploads: Array<FileField>;
   case?: Maybe<CaseRecord>;
   news?: Maybe<NewsRecord>;
   page?: Maybe<PageRecord>;
+  report?: Maybe<ReportRecord>;
   source?: Maybe<SourceRecord>;
   upload?: Maybe<FileField>;
 };
@@ -744,6 +766,12 @@ export type Query_allNewsMetaArgs = {
 export type Query_allPagesMetaArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<PageModelFilter>;
+};
+
+
+export type Query_allReportsMetaArgs = {
+  locale?: Maybe<SiteLocale>;
+  filter?: Maybe<ReportModelFilter>;
 };
 
 
@@ -791,6 +819,15 @@ export type QueryallPagesArgs = {
 };
 
 
+export type QueryallReportsArgs = {
+  locale?: Maybe<SiteLocale>;
+  skip?: Maybe<Scalars['IntType']>;
+  first?: Maybe<Scalars['IntType']>;
+  filter?: Maybe<ReportModelFilter>;
+  orderBy?: Maybe<Array<Maybe<ReportModelOrderBy>>>;
+};
+
+
 export type QueryallSourcesArgs = {
   locale?: Maybe<SiteLocale>;
   skip?: Maybe<Scalars['IntType']>;
@@ -830,6 +867,13 @@ export type QuerypageArgs = {
 };
 
 
+export type QueryreportArgs = {
+  locale?: Maybe<SiteLocale>;
+  filter?: Maybe<ReportModelFilter>;
+  orderBy?: Maybe<Array<Maybe<ReportModelOrderBy>>>;
+};
+
+
 export type QuerysourceArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<SourceModelFilter>;
@@ -841,6 +885,144 @@ export type QueryuploadArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<UploadFilter>;
   orderBy?: Maybe<Array<Maybe<UploadOrderBy>>>;
+};
+
+export type ReportModelFilter = {
+  _createdAt?: Maybe<DateTimeFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<ItemIdFilter>;
+  _firstPublishedAt?: Maybe<DateTimeFilter>;
+  _publicationScheduledAt?: Maybe<DateTimeFilter>;
+  _publishedAt?: Maybe<DateTimeFilter>;
+  _status?: Maybe<StatusFilter>;
+  _updatedAt?: Maybe<DateTimeFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+  _isValid?: Maybe<BooleanFilter>;
+  casesInHeredia?: Maybe<IntegerFilter>;
+  casesInLimon?: Maybe<IntegerFilter>;
+  casesInPuntarenas?: Maybe<IntegerFilter>;
+  casesInGuanacaste?: Maybe<IntegerFilter>;
+  casesInCartago?: Maybe<IntegerFilter>;
+  casesInAlajuela?: Maybe<IntegerFilter>;
+  casesInSanJose?: Maybe<IntegerFilter>;
+  foreignersCases?: Maybe<IntegerFilter>;
+  costaRicanCases?: Maybe<IntegerFilter>;
+  elderlyCases?: Maybe<IntegerFilter>;
+  adultCases?: Maybe<IntegerFilter>;
+  juvenileCases?: Maybe<IntegerFilter>;
+  menCases?: Maybe<IntegerFilter>;
+  womenCases?: Maybe<IntegerFilter>;
+  deceasedCases?: Maybe<IntegerFilter>;
+  recoveredCases?: Maybe<IntegerFilter>;
+  activeCases?: Maybe<IntegerFilter>;
+  discardedCases?: Maybe<IntegerFilter>;
+  confirmedCases?: Maybe<IntegerFilter>;
+  date?: Maybe<DateFilter>;
+  OR?: Maybe<Array<Maybe<ReportModelFilter>>>;
+};
+
+export enum ReportModelOrderBy {
+  _createdAt_ASC = '_createdAt_ASC',
+  _createdAt_DESC = '_createdAt_DESC',
+  createdAt_ASC = 'createdAt_ASC',
+  createdAt_DESC = 'createdAt_DESC',
+  id_ASC = 'id_ASC',
+  id_DESC = 'id_DESC',
+  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
+  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
+  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
+  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
+  _publishedAt_ASC = '_publishedAt_ASC',
+  _publishedAt_DESC = '_publishedAt_DESC',
+  _status_ASC = '_status_ASC',
+  _status_DESC = '_status_DESC',
+  _updatedAt_ASC = '_updatedAt_ASC',
+  _updatedAt_DESC = '_updatedAt_DESC',
+  updatedAt_ASC = 'updatedAt_ASC',
+  updatedAt_DESC = 'updatedAt_DESC',
+  _isValid_ASC = '_isValid_ASC',
+  _isValid_DESC = '_isValid_DESC',
+  casesInHeredia_ASC = 'casesInHeredia_ASC',
+  casesInHeredia_DESC = 'casesInHeredia_DESC',
+  casesInLimon_ASC = 'casesInLimon_ASC',
+  casesInLimon_DESC = 'casesInLimon_DESC',
+  casesInPuntarenas_ASC = 'casesInPuntarenas_ASC',
+  casesInPuntarenas_DESC = 'casesInPuntarenas_DESC',
+  casesInGuanacaste_ASC = 'casesInGuanacaste_ASC',
+  casesInGuanacaste_DESC = 'casesInGuanacaste_DESC',
+  casesInCartago_ASC = 'casesInCartago_ASC',
+  casesInCartago_DESC = 'casesInCartago_DESC',
+  casesInAlajuela_ASC = 'casesInAlajuela_ASC',
+  casesInAlajuela_DESC = 'casesInAlajuela_DESC',
+  casesInSanJose_ASC = 'casesInSanJose_ASC',
+  casesInSanJose_DESC = 'casesInSanJose_DESC',
+  foreignersCases_ASC = 'foreignersCases_ASC',
+  foreignersCases_DESC = 'foreignersCases_DESC',
+  costaRicanCases_ASC = 'costaRicanCases_ASC',
+  costaRicanCases_DESC = 'costaRicanCases_DESC',
+  elderlyCases_ASC = 'elderlyCases_ASC',
+  elderlyCases_DESC = 'elderlyCases_DESC',
+  adultCases_ASC = 'adultCases_ASC',
+  adultCases_DESC = 'adultCases_DESC',
+  juvenileCases_ASC = 'juvenileCases_ASC',
+  juvenileCases_DESC = 'juvenileCases_DESC',
+  menCases_ASC = 'menCases_ASC',
+  menCases_DESC = 'menCases_DESC',
+  womenCases_ASC = 'womenCases_ASC',
+  womenCases_DESC = 'womenCases_DESC',
+  deceasedCases_ASC = 'deceasedCases_ASC',
+  deceasedCases_DESC = 'deceasedCases_DESC',
+  recoveredCases_ASC = 'recoveredCases_ASC',
+  recoveredCases_DESC = 'recoveredCases_DESC',
+  activeCases_ASC = 'activeCases_ASC',
+  activeCases_DESC = 'activeCases_DESC',
+  discardedCases_ASC = 'discardedCases_ASC',
+  discardedCases_DESC = 'discardedCases_DESC',
+  confirmedCases_ASC = 'confirmedCases_ASC',
+  confirmedCases_DESC = 'confirmedCases_DESC',
+  date_ASC = 'date_ASC',
+  date_DESC = 'date_DESC'
+}
+
+export type ReportRecord = {
+   __typename?: 'ReportRecord';
+  _createdAt: Scalars['DateTime'];
+  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  _isValid: Scalars['BooleanType'];
+  _modelApiKey: Scalars['String'];
+  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
+  _publishedAt?: Maybe<Scalars['DateTime']>;
+  _seoMetaTags: Array<Tag>;
+  _status: ItemStatus;
+  _updatedAt: Scalars['DateTime'];
+  activeCases?: Maybe<Scalars['IntType']>;
+  adultCases?: Maybe<Scalars['IntType']>;
+  casesInAlajuela?: Maybe<Scalars['IntType']>;
+  casesInCartago?: Maybe<Scalars['IntType']>;
+  casesInGuanacaste?: Maybe<Scalars['IntType']>;
+  casesInHeredia?: Maybe<Scalars['IntType']>;
+  casesInLimon?: Maybe<Scalars['IntType']>;
+  casesInPuntarenas?: Maybe<Scalars['IntType']>;
+  casesInSanJose?: Maybe<Scalars['IntType']>;
+  confirmedCases?: Maybe<Scalars['IntType']>;
+  costaRicanCases?: Maybe<Scalars['IntType']>;
+  createdAt: Scalars['DateTime'];
+  date?: Maybe<Scalars['Date']>;
+  deceasedCases?: Maybe<Scalars['IntType']>;
+  discardedCases?: Maybe<Scalars['IntType']>;
+  elderlyCases?: Maybe<Scalars['IntType']>;
+  foreignersCases?: Maybe<Scalars['IntType']>;
+  id: Scalars['ItemId'];
+  juvenileCases?: Maybe<Scalars['IntType']>;
+  menCases?: Maybe<Scalars['IntType']>;
+  recoveredCases?: Maybe<Scalars['IntType']>;
+  updatedAt: Scalars['DateTime'];
+  womenCases?: Maybe<Scalars['IntType']>;
+};
+
+
+export type ReportRecord_seoMetaTagsArgs = {
+  locale?: Maybe<SiteLocale>;
 };
 
 export type ResolutionFilter = {
@@ -1257,6 +1439,15 @@ export type CaseFragmentFragment = (
   & Pick<CaseRecord, 'id' | 'detected' | 'updated' | 'casestatus' | 'gender' | 'age'>
 );
 
+export type NewsFragmentFragment = (
+  { __typename?: 'NewsRecord' }
+  & Pick<NewsRecord, 'id' | 'createdAt' | 'title' | 'url'>
+  & { source: Maybe<(
+    { __typename?: 'SourceRecord' }
+    & Pick<SourceRecord, 'name'>
+  )> }
+);
+
 export type casesQueryVariables = {
   orderBy?: Maybe<Array<Maybe<CaseModelOrderBy>>>;
   first?: Maybe<Scalars['IntType']>;
@@ -1268,6 +1459,20 @@ export type casesQuery = (
   & { cases: Array<(
     { __typename?: 'CaseRecord' }
     & CaseFragmentFragment
+  )> }
+);
+
+export type newsQueryVariables = {
+  orderBy?: Maybe<Array<Maybe<NewsModelOrderBy>>>;
+  first?: Maybe<Scalars['IntType']>;
+};
+
+
+export type newsQuery = (
+  { __typename?: 'Query' }
+  & { news: Array<(
+    { __typename?: 'NewsRecord' }
+    & NewsFragmentFragment
   )> }
 );
 
@@ -1288,6 +1493,17 @@ export const CaseFragmentFragmentDoc = gql`
   age
 }
     `;
+export const NewsFragmentFragmentDoc = gql`
+    fragment NewsFragment on NewsRecord {
+  id
+  createdAt
+  title
+  url
+  source {
+    name
+  }
+}
+    `;
 export const pageMetaTagsDocument = gql`
     query pageMetaTags($name: String!) {
   page(filter: {name: {eq: $name}}) {
@@ -1304,6 +1520,13 @@ export const casesDocument = gql`
   }
 }
     ${CaseFragmentFragmentDoc}`;
+export const newsDocument = gql`
+    query news($orderBy: [NewsModelOrderBy], $first: IntType) {
+  news: allNews(orderBy: $orderBy, first: $first) {
+    ...NewsFragment
+  }
+}
+    ${NewsFragmentFragmentDoc}`;
 export function getSdk(client: GraphQLClient) {
   return {
     pageMetaTags(variables: pageMetaTagsQueryVariables): Promise<pageMetaTagsQuery> {
@@ -1311,6 +1534,9 @@ export function getSdk(client: GraphQLClient) {
     },
     cases(variables?: casesQueryVariables): Promise<casesQuery> {
       return client.request<casesQuery>(print(casesDocument), variables);
+    },
+    news(variables?: newsQueryVariables): Promise<newsQuery> {
+      return client.request<newsQuery>(print(newsDocument), variables);
     }
   };
 }

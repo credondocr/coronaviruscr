@@ -45,12 +45,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const reports = await sdk.fetchReports({
     orderBy: [sdk.ReportOrderBy.date_DESC],
-    first: 5,
+    first: 1,
   })
 
   const recentNews = await sdk.fetchNews({
     orderBy: [sdk.NewsOrderBy.createdAt_DESC],
-    first: 3,
+    first: 6,
   })
 
   return {

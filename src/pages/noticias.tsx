@@ -1,5 +1,6 @@
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
+import { FaNewspaper } from 'react-icons/fa'
 
 import * as sdk from '../lib/sdk'
 import SEO from '../components/seo'
@@ -17,8 +18,8 @@ const NewsPage: NextPage<NewsPageProps> = ({ meta, news }) => {
     <>
       <SEO meta={meta} />
       <MainLayout>
-        <Section title="Noticias">
-          <NewsList news={news} />
+        <Section icon={FaNewspaper} title="Noticias">
+          <NewsList data={news} />
         </Section>
       </MainLayout>
     </>

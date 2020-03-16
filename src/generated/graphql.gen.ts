@@ -601,6 +601,7 @@ export type NewsModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
+  date?: Maybe<DateFilter>;
   title?: Maybe<StringFilter>;
   source?: Maybe<LinkFilter>;
   url?: Maybe<StringFilter>;
@@ -628,6 +629,8 @@ export enum NewsModelOrderBy {
   updatedAt_DESC = 'updatedAt_DESC',
   _isValid_ASC = '_isValid_ASC',
   _isValid_DESC = '_isValid_DESC',
+  date_ASC = 'date_ASC',
+  date_DESC = 'date_DESC',
   title_ASC = 'title_ASC',
   title_DESC = 'title_DESC',
   url_ASC = 'url_ASC',
@@ -646,6 +649,7 @@ export type NewsRecord = {
   _status: ItemStatus;
   _updatedAt: Scalars['DateTime'];
   createdAt: Scalars['DateTime'];
+  date?: Maybe<Scalars['Date']>;
   id: Scalars['ItemId'];
   source?: Maybe<SourceRecord>;
   title?: Maybe<Scalars['String']>;
@@ -1455,10 +1459,10 @@ export type reportsQuery = (
 
 export type NewsFragmentFragment = (
   { __typename?: 'NewsRecord' }
-  & Pick<NewsRecord, 'id' | 'createdAt' | 'title' | 'url'>
+  & Pick<NewsRecord, 'id' | 'date' | 'title' | 'url'>
   & { source: Maybe<(
     { __typename?: 'SourceRecord' }
-    & Pick<SourceRecord, 'name'>
+    & Pick<SourceRecord, 'name' | 'url'>
   )> }
 );
 
@@ -1510,11 +1514,12 @@ export const ReportFragmentFragmentDoc = gql`
 export const NewsFragmentFragmentDoc = gql`
     fragment NewsFragment on NewsRecord {
   id
-  createdAt
+  date
   title
   url
   source {
     name
+    url
   }
 }
     `;

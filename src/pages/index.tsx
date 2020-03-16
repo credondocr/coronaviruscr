@@ -8,7 +8,7 @@ import SEO from '../components/seo'
 import MainLayout from '../layouts/main'
 import Section from '../components/ui/section'
 import CasesStats from '../components/cases/stats'
-import RecentNews from '../components/news/recent'
+import NewsList from '../components/news/list'
 
 type HomePageProps = {
   meta: sdk.PageMetaTag[]
@@ -33,7 +33,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
           />
         </Section>
         <Section icon={FaRegClock} title="Noticias recientes">
-          <RecentNews recentNews={recentNews} />
+          <NewsList data={recentNews} />
         </Section>
       </MainLayout>
     </>

@@ -13,6 +13,7 @@ import {
   Cell,
   BarChart,
   Bar,
+  Legend,
 } from 'recharts'
 
 import * as content from '../../types/content'
@@ -169,6 +170,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               ))}
             </Pie>
             <Tooltip />
+            <Legend />
           </PieChart>
         </ResponsiveContainer>
       </Card>
@@ -239,6 +241,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               ))}
             </Pie>
             <Tooltip />
+            <Legend />
           </PieChart>
         </ResponsiveContainer>
       </Card>

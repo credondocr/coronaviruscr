@@ -46,9 +46,9 @@ const CasesStats: React.FC<CasesStatsProps> = ({
   const GENDER_COLORS = ['#fd79a8', '#74b9ff']
 
   const byAge = [
-    { name: 'Menores de edad', value: lastReport.byAge.juveniles },
+    { name: 'Menores', value: lastReport.byAge.juveniles },
     { name: 'Adultos', value: lastReport.byAge.adults },
-    { name: 'Tercera edad', value: lastReport.byAge.elderlies },
+    { name: 'Ancianos', value: lastReport.byAge.elderlies },
   ]
 
   const byLocation = [

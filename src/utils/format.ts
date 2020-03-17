@@ -5,8 +5,8 @@ import { FormattedReport } from '../types/content'
 
 moment.locale('ES')
 
-export const formatDate = (date?: Date): string =>
-  moment(date).format('DD \\d\\e MMMM \\d\\e YYYY')
+export const formatDate = (date?: Date, small = false): string =>
+  moment(date).format(small ? 'DD MMM' : 'DD \\d\\e MMMM \\d\\e YYYY')
 
 export const formatReport = (report: sdk.Report): FormattedReport => ({
   date: report.date,

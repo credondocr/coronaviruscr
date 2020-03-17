@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
 
-import Card from '../ui/card'
 import * as sdk from '../../lib/sdk'
 import * as format from '../../utils/format'
+import Card from '../ui/card'
 
 type NewsListProps = {
   data: sdk.News[]

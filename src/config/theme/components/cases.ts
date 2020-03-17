@@ -3,13 +3,19 @@ const cases = {
     container: {
       display: 'grid',
       gridGap: 5,
-      gridTemplateColumns: ['1fr', 'repeat(6, 1fr)'],
+      gridTemplateColumns: ['repeat(2, 1fr)', 'repeat(6, 1fr)'],
     },
     mainStat: {
-      gridColumn: [null, 'span 3'],
+      gridColumn: ['span 1', 'span 3'],
     },
     secondaryStat: {
-      gridColumn: [null, 'span 2'],
+      gridColumn: ['span 1', 'span 2'],
+    },
+    mainChart: {
+      gridColumn: ['span 2', 'span 6'],
+    },
+    secondaryChart: {
+      gridColumn: ['span 2', 'span 3'],
     },
   },
   list: {

@@ -17,7 +17,7 @@ type HomePageProps = {
 }
 
 const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
-  const [lastReport] = reports
+  const lastReport = reports[reports.length - 1]
 
   return (
     <>
@@ -30,6 +30,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
             activeCases={lastReport.byStatus.active}
             recoveredCases={lastReport.byStatus.recovered}
             deadCases={lastReport.byStatus.recovered}
+            reports={reports}
           />
         </Section>
         <Section icon={FaRegClock} title="Noticias recientes">
@@ -45,18 +46,18 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const reports = await sdk.fetchReports({
     orderBy: [sdk.ReportOrderBy.date_DESC],
-    first: 1,
+    first: 100,
   })
 
   const recentNews = await sdk.fetchNews({
-    orderBy: [sdk.NewsOrderBy.createdAt_DESC],
+    orderBy: [sdk.NewsOrderBy.date_DESC],
     first: 6,
   })
 
   return {
     props: {
       meta,
-      reports,
+      reports: reports.reverse(),
       recentNews,
     },
   }

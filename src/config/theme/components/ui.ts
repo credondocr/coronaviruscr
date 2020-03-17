@@ -35,7 +35,7 @@ const ui = {
       textAlign: 'center',
     },
     title: {
-      mt: 2,
+      mb: 2,
       color: 'textSecondary',
     },
   },

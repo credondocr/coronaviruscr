@@ -127,8 +127,8 @@ const CasesStats: React.FC<CasesStatsProps> = ({
             <XAxis
               dataKey="date"
               textAnchor="middle"
-              tick={{ fontSize: 11, angle: -45 }}
-              tickMargin={10}
+              tick={{ fontSize: 11, angle: -75 }}
+              tickMargin={16}
               tickFormatter={(d) => format.formatDate(d, true)}
             />
             <YAxis dataKey="confirmedCases" />

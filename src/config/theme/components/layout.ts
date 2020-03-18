@@ -12,7 +12,7 @@ const layout = {
   header: {
     wrapper: {
       bg: 'toolbar',
-      py: [5, 2],
+      py: [5, 10],
     },
     container: {
       variant: 'components.layout.container',
@@ -43,7 +43,7 @@ const layout = {
       textDecoration: 'none',
       fontSize: [1, 3],
       fontWeight: 'bold',
-      ml: [0, 9],
+      ml: [0, 4],
       '&:hover': {
         color: 'text',
       },
@@ -52,7 +52,7 @@ const layout = {
       variant: 'components.layout.nav.item',
       color: 'toolbarPrimary',
       borderBottom: '2px solid',
-      borderBottomColor: 'primary',
+      borderBottomColor: 'toolbarPrimary',
     },
   },
   main: {

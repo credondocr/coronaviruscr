@@ -43,6 +43,8 @@ const layout = {
       textDecoration: 'none',
       fontSize: [1, 3],
       fontWeight: 'bold',
+      borderBottom: '2px solid',
+      borderBottomColor: 'toolbar',
       ml: [0, 4],
       '&:hover': {
         color: 'text',
@@ -51,7 +53,6 @@ const layout = {
     itemActive: {
       variant: 'components.layout.nav.item',
       color: 'toolbarPrimary',
-      borderBottom: '2px solid',
       borderBottomColor: 'toolbarPrimary',
     },
   },

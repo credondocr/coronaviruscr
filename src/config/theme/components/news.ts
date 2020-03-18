@@ -12,24 +12,32 @@ const news = {
       textAlign: 'left',
       display: 'flex',
       flexDirection: 'column',
+      p: 0,
     },
     title: {
       flex: 'auto',
       fontWeight: 'bold',
       color: 'text',
+      mr: 1,
     },
     source: {
+      display: 'block',
       mt: 2,
-      color: 'textSecondary',
+      color: 'primary',
       fontSize: 1,
+      fontWeight: 'bold',
+    },
+    image: {
+      borderTopLeftRadius: 'normal',
+      borderTopRightRadius: 'normal',
+      maxWidth: '100%',
     },
     date: {
       color: 'textSecondary',
     },
-  },
-
-  source: {
-    color: 'textSecondary',
+    cardContent: {
+      p: 3,
+    },
   },
   // list: {
   //   toolbar: {

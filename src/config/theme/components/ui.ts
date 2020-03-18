@@ -17,9 +17,21 @@ const ui = {
       },
     },
     title: {
+      color: 'textSecondary',
       mb: 8,
       display: 'flex',
       alignItems: 'center',
+      position: 'relative',
+      '::after': {
+        backgroundColor: 'primary',
+        top: 'calc(100% + 5px)',
+        content: '" "',
+        display: 'block',
+        position: 'absolute',
+        left: '34px',
+        height: 7,
+        width: '70px',
+      },
     },
     icon: {
       color: 'primary',

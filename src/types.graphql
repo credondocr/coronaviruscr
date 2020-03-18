@@ -50,6 +50,9 @@ fragment NewsFragment on NewsRecord {
     name
     url
   }
+  thumbnail {
+    url
+  }
 }
 
 query news($orderBy: [NewsModelOrderBy], $first: IntType) {

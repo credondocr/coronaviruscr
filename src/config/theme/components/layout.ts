@@ -12,7 +12,7 @@ const layout = {
   header: {
     wrapper: {
       bg: 'toolbar',
-      py: [5, 10],
+      py: [5, 2],
     },
     container: {
       variant: 'components.layout.container',
@@ -20,39 +20,49 @@ const layout = {
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+    title: {
+      color: 'toolbarPrimary',
+    },
+    subtitle: {
+      color: 'toolbarSecondary',
+    },
   },
   nav: {
     container: {
       mt: [3, 0],
       display: 'flex',
       justifyContent: 'space-around',
+      alignItems: 'center',
       alignSelf: 'stretch',
     },
     item: {
-      color: 'textSecondary',
+      alignItems: 'center',
+      color: 'toolbarSecondary',
+      display: 'flex',
+      flexDirection: 'column',
       textDecoration: 'none',
       fontSize: [1, 3],
       fontWeight: 'bold',
-      ml: [0, 4],
+      ml: [0, 9],
       '&:hover': {
         color: 'text',
       },
     },
     itemActive: {
       variant: 'components.layout.nav.item',
-      color: 'text',
+      color: 'toolbarPrimary',
       borderBottom: '2px solid',
       borderBottomColor: 'primary',
     },
   },
   main: {
     variant: 'components.layout.container',
-    my: 15,
+    my: 8,
   },
   footer: {
     wrapper: {
-      bg: 'toolbar',
-      py: [5, 10],
+      bg: 'footer',
+      py: [5, 5],
     },
     container: {
       variant: 'components.layout.container',

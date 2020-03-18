@@ -10,12 +10,10 @@ const MainLayout: React.FC = ({ children }) => {
     <ThemeProvider theme={theme}>
       <header sx={{ variant: 'components.layout.header.wrapper' }}>
         <div sx={{ variant: 'components.layout.header.container' }}>
-          <Styled.h1>
-            <span role="img" aria-label="COVID-19">
-              🦠
-            </span>{' '}
-            Costa Rica
-          </Styled.h1>
+          <div>
+            <Styled.h1 sx={{ variant: 'components.layout.header.title' }}>Costa Rica</Styled.h1>
+            <Styled.h3 sx={{ variant: 'components.layout.header.subtitle' }}>COVID-19</Styled.h3>
+          </div>
           <Nav />
         </div>
       </header>

@@ -25,6 +25,7 @@ const layout = {
     },
     subtitle: {
       color: 'toolbarSecondary',
+      mt: [0, 3],
     },
   },
   nav: {
@@ -47,7 +48,7 @@ const layout = {
       borderBottomColor: 'toolbar',
       ml: [0, 4],
       '&:hover': {
-        color: 'text',
+        color: 'toolbarPrimary',
       },
     },
     itemActive: {
@@ -63,7 +64,7 @@ const layout = {
   footer: {
     wrapper: {
       bg: 'footer',
-      py: [5, 5],
+      py: [5, 10],
     },
     container: {
       variant: 'components.layout.container',

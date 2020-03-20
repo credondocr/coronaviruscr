@@ -232,14 +232,6 @@ export type FileFieldurlArgs = {
   imgixParams?: Maybe<ImgixParams>;
 };
 
-export type FileFilter = {
-  eq?: Maybe<Scalars['UploadId']>;
-  neq?: Maybe<Scalars['UploadId']>;
-  in?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
-  exists?: Maybe<Scalars['BooleanType']>;
-};
-
 
 export type GlobalSeoField = {
    __typename?: 'GlobalSeoField';
@@ -609,7 +601,6 @@ export type NewsModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
-  thumbnail?: Maybe<FileFilter>;
   date?: Maybe<DateFilter>;
   title?: Maybe<StringFilter>;
   source?: Maybe<LinkFilter>;
@@ -661,7 +652,6 @@ export type NewsRecord = {
   date?: Maybe<Scalars['Date']>;
   id: Scalars['ItemId'];
   source?: Maybe<SourceRecord>;
-  thumbnail?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   url?: Maybe<Scalars['String']>;
@@ -1473,9 +1463,6 @@ export type NewsFragmentFragment = (
   & { source: Maybe<(
     { __typename?: 'SourceRecord' }
     & Pick<SourceRecord, 'name' | 'url'>
-  )>, thumbnail: Maybe<(
-    { __typename?: 'FileField' }
-    & Pick<FileField, 'url'>
   )> }
 );
 
@@ -1532,9 +1519,6 @@ export const NewsFragmentFragmentDoc = gql`
   url
   source {
     name
-    url
-  }
-  thumbnail {
     url
   }
 }

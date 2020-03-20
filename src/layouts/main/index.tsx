@@ -11,8 +11,12 @@ const MainLayout: React.FC = ({ children }) => {
       <header sx={{ variant: 'components.layout.header.wrapper' }}>
         <div sx={{ variant: 'components.layout.header.container' }}>
           <div>
-            <Styled.h1 sx={{ variant: 'components.layout.header.title' }}>Costa Rica</Styled.h1>
-            <Styled.h3 sx={{ variant: 'components.layout.header.subtitle' }}>COVID-19</Styled.h3>
+            <Styled.h1 sx={{ variant: 'components.layout.header.title' }}>
+              Costa Rica
+            </Styled.h1>
+            <Styled.h2 sx={{ variant: 'components.layout.header.subtitle' }}>
+              COVID-19
+            </Styled.h2>
           </div>
           <Nav />
         </div>

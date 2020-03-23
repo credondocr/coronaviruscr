@@ -38,5 +38,6 @@ export const formatReport = (report: sdk.Report): FormattedReport => ({
     guanacaste: report.casesInGuanacaste,
     puntarenas: report.casesInPuntarenas,
     limon: report.casesInLimon,
+    unknown: report.casesInUnknownLocation,
   },
 })

@@ -60,6 +60,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
     { name: 'Guanacaste', value: lastReport.byLocation.guanacaste },
     { name: 'Puntarenas', value: lastReport.byLocation.puntarenas },
     { name: 'Limón', value: lastReport.byLocation.limon },
+    { name: 'Desconocida', value: lastReport.byLocation.unknown },
   ]
 
   const NATIONALITY_COLORS = ['#e74c3c', '#9b59b6']

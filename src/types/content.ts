@@ -28,5 +28,6 @@ export type FormattedReport = {
     guanacaste: number
     puntarenas: number
     limon: number
+    unknown: number
   }
 }

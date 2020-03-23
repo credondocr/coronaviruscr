@@ -33,6 +33,7 @@ fragment ReportFragment on ReportRecord {
   casesInGuanacaste
   casesInPuntarenas
   casesInLimon
+  casesInUnknownLocation
 }
 
 query reports($orderBy: [ReportModelOrderBy], $first: IntType) {

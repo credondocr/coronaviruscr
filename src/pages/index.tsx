@@ -2,6 +2,7 @@ import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import { FaChartLine, FaRegClock } from 'react-icons/fa'
 
+import { useTranslation } from 'react-i18next'
 import * as sdk from '../lib/sdk'
 import * as content from '../types/content'
 import SEO from '../components/seo'
@@ -18,12 +19,12 @@ type HomePageProps = {
 
 const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
   const lastReport = reports[reports.length - 1]
-
+  const { t } = useTranslation()
   return (
     <>
       <SEO meta={meta} />
       <MainLayout>
-        <Section icon={FaChartLine} title="Estadísticas generales">
+        <Section icon={FaChartLine} title={t('General Stats')}>
           <CasesStats
             totalCases={lastReport.confirmedCases}
             discardedCases={lastReport.discardedCases}
@@ -33,7 +34,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
             reports={reports}
           />
         </Section>
-        <Section icon={FaRegClock} title="Noticias recientes">
+        <Section icon={FaRegClock} title={t('Recent News')}>
           <NewsList data={recentNews} />
         </Section>
       </MainLayout>

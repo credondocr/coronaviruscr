@@ -4,6 +4,7 @@ import router from 'next/router'
 
 import * as analytics from '../lib/analytics'
 import ProgressBar from '../components/ui/progress-bar'
+import '../i18n'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   React.useEffect(() => {

@@ -16,6 +16,7 @@ import {
   Legend,
 } from 'recharts'
 
+import { useTranslation } from 'react-i18next'
 import * as content from '../../types/content'
 import * as format from '../../utils/format'
 import Card from '../ui/card'
@@ -37,19 +38,20 @@ const CasesStats: React.FC<CasesStatsProps> = ({
   deadCases,
   reports,
 }) => {
+  const { t } = useTranslation()
   const lastReport = reports[reports.length - 1]
 
   const byGender = [
-    { name: 'Mujeres', value: lastReport.byGender.women },
-    { name: 'Hombres', value: lastReport.byGender.men },
+    { name: t('Female'), value: lastReport.byGender.women },
+    { name: t('Male'), value: lastReport.byGender.men },
   ]
 
   const GENDER_COLORS = ['#fd79a8', '#74b9ff']
 
   const byAge = [
-    { name: 'Menores', value: lastReport.byAge.juveniles },
-    { name: 'Adultos', value: lastReport.byAge.adults },
-    { name: 'Ancianos', value: lastReport.byAge.elderlies },
+    { name: t('Childs'), value: lastReport.byAge.juveniles },
+    { name: t('Adults'), value: lastReport.byAge.adults },
+    { name: t('Older adults'), value: lastReport.byAge.elderlies },
   ]
 
   const byLocation = [
@@ -66,26 +68,31 @@ const CasesStats: React.FC<CasesStatsProps> = ({
   const NATIONALITY_COLORS = ['#e74c3c', '#9b59b6', '#f1c40f']
 
   const byNationality = [
-    { name: 'Costarricenses', value: lastReport.byNationality.costarricans },
-    { name: 'Extranjeros', value: lastReport.byNationality.foreigners },
+    { name: t('Costa Ricans'), value: lastReport.byNationality.costarricans },
+    { name: t('Foreign'), value: lastReport.byNationality.foreigners },
     {
-      name: 'Investigación pendiente',
+      name: t('TBD'),
       value: lastReport.byNationality.pending,
     },
   ]
+
+  const active = t('Active')
+  const recovered = t('Recovered')
+  const deceased = t('Deceased')
+  const confirmed = t('Confirmed')
 
   return (
     <div sx={{ variant: 'components.cases.stats.container' }}>
       <Card
         sx={{ variant: 'components.cases.stats.mainStat' }}
-        title="Casos confirmados"
+        title={t('Confirmed Cases')}
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>{totalCases}</span>
       </Card>
 
       <Card
         sx={{ variant: 'components.cases.stats.mainStat' }}
-        title="Casos descartados"
+        title={t('Discarded Cases')}
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>
           {discardedCases}
@@ -93,7 +100,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos activos"
+        title={t('Active Cases')}
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'warning' }}>
@@ -102,7 +109,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos recuperados"
+        title={t('Recovered Cases')}
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'success' }}>
@@ -111,7 +118,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos fallecidos"
+        title={t('Deceased Cases')}
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'error' }}>
@@ -138,16 +145,16 @@ const CasesStats: React.FC<CasesStatsProps> = ({
             />
             <YAxis dataKey="confirmedCases" />
             <Tooltip label="date" />
-            <Line dataKey="confirmedCases" name="Confirmados" />
-            <Line dataKey="byStatus.active" name="Activos" stroke="#f1c40f" />
+            <Line dataKey="confirmedCases" name={confirmed} />
+            <Line dataKey="byStatus.active" name={active} stroke="#f1c40f" />
             <Line
               dataKey="byStatus.recovered"
-              name="Recuperados"
+              name={recovered}
               stroke="#2ecc71"
             />
             <Line
               dataKey="byStatus.deceased"
-              name="Fallecidos"
+              name={deceased}
               stroke="#e74c3c"
             />
           </LineChart>
@@ -155,7 +162,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos por género"
+        title={t('Cases by Gender')}
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
         <ResponsiveContainer height={300}>
@@ -181,7 +188,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos por edad"
+        title={t('Cases by Age')}
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
         <ResponsiveContainer height={300}>
@@ -202,7 +209,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos por provincia"
+        title={t('Cases by Province')}
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
         <ResponsiveContainer height={300}>
@@ -226,7 +233,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
       </Card>
 
       <Card
-        title="Casos por nacionalidad"
+        title={t('Cases by Nationality')}
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
         <ResponsiveContainer height={300}>

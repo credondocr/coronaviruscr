@@ -3,10 +3,14 @@ const cases = {
     container: {
       display: 'grid',
       gridGap: 5,
-      gridTemplateColumns: ['repeat(2, 1fr)', 'repeat(6, 1fr)'],
+      gridTemplateColumns: [
+        'repeat(2, minmax(0, 1fr))',
+        'repeat(6, minmax(0, 1fr))',
+      ],
     },
     mainStat: {
       gridColumn: ['span 1', 'span 3'],
+      padding: '24px 12px',
     },
     secondaryStat: {
       gridColumn: ['span 1', 'span 2'],

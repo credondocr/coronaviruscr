@@ -10,7 +10,7 @@ const cases = {
     },
     mainStat: {
       gridColumn: ['span 1', 'span 3'],
-      padding: '24px 12px',
+      px: [2, 3],
     },
     secondaryStat: {
       gridColumn: ['span 1', 'span 2'],

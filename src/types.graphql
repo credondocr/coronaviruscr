@@ -26,6 +26,7 @@ fragment ReportFragment on ReportRecord {
   elderlyCases
   costaRicanCases
   foreignersCases
+  pendingNationalityCases
   casesInSanJose
   casesInAlajuela
   casesInCartago
@@ -33,6 +34,7 @@ fragment ReportFragment on ReportRecord {
   casesInGuanacaste
   casesInPuntarenas
   casesInLimon
+  casesInUnknownLocation
 }
 
 query reports($orderBy: [ReportModelOrderBy], $first: IntType) {

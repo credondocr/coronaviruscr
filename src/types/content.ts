@@ -19,6 +19,7 @@ export type FormattedReport = {
   byNationality: {
     costarricans: number
     foreigners: number
+    pending: number
   }
   byLocation: {
     sanJose: number
@@ -28,5 +29,6 @@ export type FormattedReport = {
     guanacaste: number
     puntarenas: number
     limon: number
+    unknown: number
   }
 }

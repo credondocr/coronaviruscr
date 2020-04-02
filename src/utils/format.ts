@@ -29,6 +29,7 @@ export const formatReport = (report: sdk.Report): FormattedReport => ({
   byNationality: {
     costarricans: report.costaRicanCases,
     foreigners: report.foreignersCases,
+    pending: report.pendingNationalityCases,
   },
   byLocation: {
     sanJose: report.casesInSanJose,
@@ -38,5 +39,6 @@ export const formatReport = (report: sdk.Report): FormattedReport => ({
     guanacaste: report.casesInGuanacaste,
     puntarenas: report.casesInPuntarenas,
     limon: report.casesInLimon,
+    unknown: report.casesInUnknownLocation,
   },
 })

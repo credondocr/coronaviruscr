@@ -29,7 +29,7 @@ const HomePage: NextPage<HomePageProps> = ({ meta, reports, recentNews }) => {
             discardedCases={lastReport.discardedCases}
             activeCases={lastReport.byStatus.active}
             recoveredCases={lastReport.byStatus.recovered}
-            deadCases={lastReport.byStatus.recovered}
+            deadCases={lastReport.byStatus.deceased}
             reports={reports}
           />
         </Section>

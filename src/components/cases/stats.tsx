@@ -60,13 +60,18 @@ const CasesStats: React.FC<CasesStatsProps> = ({
     { name: 'Guanacaste', value: lastReport.byLocation.guanacaste },
     { name: 'Puntarenas', value: lastReport.byLocation.puntarenas },
     { name: 'Limón', value: lastReport.byLocation.limon },
+    { name: 'Desconocida', value: lastReport.byLocation.unknown },
   ]
 
-  const NATIONALITY_COLORS = ['#e74c3c', '#9b59b6']
+  const NATIONALITY_COLORS = ['#e74c3c', '#9b59b6', '#f1c40f']
 
   const byNationality = [
     { name: 'Costarricenses', value: lastReport.byNationality.costarricans },
     { name: 'Extranjeros', value: lastReport.byNationality.foreigners },
+    {
+      name: 'Investigación pendiente',
+      value: lastReport.byNationality.pending,
+    },
   ]
 
   return (
@@ -127,8 +132,8 @@ const CasesStats: React.FC<CasesStatsProps> = ({
             <XAxis
               dataKey="date"
               textAnchor="middle"
-              tick={{ fontSize: 11, angle: -45 }}
-              tickMargin={10}
+              tick={{ fontSize: 11, angle: -75 }}
+              tickMargin={16}
               tickFormatter={(d) => format.formatDate(d, true)}
             />
             <YAxis dataKey="confirmedCases" />

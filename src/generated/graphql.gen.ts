@@ -232,6 +232,14 @@ export type FileFieldurlArgs = {
   imgixParams?: Maybe<ImgixParams>;
 };
 
+export type FileFilter = {
+  eq?: Maybe<Scalars['UploadId']>;
+  neq?: Maybe<Scalars['UploadId']>;
+  in?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
+  notIn?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
+  exists?: Maybe<Scalars['BooleanType']>;
+};
+
 
 export type GlobalSeoField = {
    __typename?: 'GlobalSeoField';
@@ -601,6 +609,7 @@ export type NewsModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
+  thumbnail?: Maybe<FileFilter>;
   date?: Maybe<DateFilter>;
   title?: Maybe<StringFilter>;
   source?: Maybe<LinkFilter>;
@@ -652,6 +661,7 @@ export type NewsRecord = {
   date?: Maybe<Scalars['Date']>;
   id: Scalars['ItemId'];
   source?: Maybe<SourceRecord>;
+  thumbnail?: Maybe<FileField>;
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   url?: Maybe<Scalars['String']>;
@@ -902,13 +912,15 @@ export type ReportModelFilter = {
   _updatedAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   _isValid?: Maybe<BooleanFilter>;
+  pendingNationalityCases?: Maybe<IntegerFilter>;
+  casesInSanJose?: Maybe<IntegerFilter>;
+  casesInGuanacaste?: Maybe<IntegerFilter>;
+  casesInUnknownLocation?: Maybe<IntegerFilter>;
   casesInHeredia?: Maybe<IntegerFilter>;
   casesInLimon?: Maybe<IntegerFilter>;
   casesInPuntarenas?: Maybe<IntegerFilter>;
-  casesInGuanacaste?: Maybe<IntegerFilter>;
   casesInCartago?: Maybe<IntegerFilter>;
   casesInAlajuela?: Maybe<IntegerFilter>;
-  casesInSanJose?: Maybe<IntegerFilter>;
   foreignersCases?: Maybe<IntegerFilter>;
   costaRicanCases?: Maybe<IntegerFilter>;
   elderlyCases?: Maybe<IntegerFilter>;
@@ -946,20 +958,24 @@ export enum ReportModelOrderBy {
   updatedAt_DESC = 'updatedAt_DESC',
   _isValid_ASC = '_isValid_ASC',
   _isValid_DESC = '_isValid_DESC',
+  pendingNationalityCases_ASC = 'pendingNationalityCases_ASC',
+  pendingNationalityCases_DESC = 'pendingNationalityCases_DESC',
+  casesInSanJose_ASC = 'casesInSanJose_ASC',
+  casesInSanJose_DESC = 'casesInSanJose_DESC',
+  casesInGuanacaste_ASC = 'casesInGuanacaste_ASC',
+  casesInGuanacaste_DESC = 'casesInGuanacaste_DESC',
+  casesInUnknownLocation_ASC = 'casesInUnknownLocation_ASC',
+  casesInUnknownLocation_DESC = 'casesInUnknownLocation_DESC',
   casesInHeredia_ASC = 'casesInHeredia_ASC',
   casesInHeredia_DESC = 'casesInHeredia_DESC',
   casesInLimon_ASC = 'casesInLimon_ASC',
   casesInLimon_DESC = 'casesInLimon_DESC',
   casesInPuntarenas_ASC = 'casesInPuntarenas_ASC',
   casesInPuntarenas_DESC = 'casesInPuntarenas_DESC',
-  casesInGuanacaste_ASC = 'casesInGuanacaste_ASC',
-  casesInGuanacaste_DESC = 'casesInGuanacaste_DESC',
   casesInCartago_ASC = 'casesInCartago_ASC',
   casesInCartago_DESC = 'casesInCartago_DESC',
   casesInAlajuela_ASC = 'casesInAlajuela_ASC',
   casesInAlajuela_DESC = 'casesInAlajuela_DESC',
-  casesInSanJose_ASC = 'casesInSanJose_ASC',
-  casesInSanJose_DESC = 'casesInSanJose_DESC',
   foreignersCases_ASC = 'foreignersCases_ASC',
   foreignersCases_DESC = 'foreignersCases_DESC',
   costaRicanCases_ASC = 'costaRicanCases_ASC',
@@ -1008,6 +1024,7 @@ export type ReportRecord = {
   casesInLimon?: Maybe<Scalars['IntType']>;
   casesInPuntarenas?: Maybe<Scalars['IntType']>;
   casesInSanJose?: Maybe<Scalars['IntType']>;
+  casesInUnknownLocation?: Maybe<Scalars['IntType']>;
   confirmedCases?: Maybe<Scalars['IntType']>;
   costaRicanCases?: Maybe<Scalars['IntType']>;
   createdAt: Scalars['DateTime'];
@@ -1019,6 +1036,7 @@ export type ReportRecord = {
   id: Scalars['ItemId'];
   juvenileCases?: Maybe<Scalars['IntType']>;
   menCases?: Maybe<Scalars['IntType']>;
+  pendingNationalityCases?: Maybe<Scalars['IntType']>;
   recoveredCases?: Maybe<Scalars['IntType']>;
   updatedAt: Scalars['DateTime'];
   womenCases?: Maybe<Scalars['IntType']>;
@@ -1440,7 +1458,7 @@ export type pageMetaTagsQuery = (
 
 export type ReportFragmentFragment = (
   { __typename?: 'ReportRecord' }
-  & Pick<ReportRecord, 'date' | 'confirmedCases' | 'discardedCases' | 'activeCases' | 'recoveredCases' | 'deceasedCases' | 'womenCases' | 'menCases' | 'juvenileCases' | 'adultCases' | 'elderlyCases' | 'costaRicanCases' | 'foreignersCases' | 'casesInSanJose' | 'casesInAlajuela' | 'casesInCartago' | 'casesInHeredia' | 'casesInGuanacaste' | 'casesInPuntarenas' | 'casesInLimon'>
+  & Pick<ReportRecord, 'date' | 'confirmedCases' | 'discardedCases' | 'activeCases' | 'recoveredCases' | 'deceasedCases' | 'womenCases' | 'menCases' | 'juvenileCases' | 'adultCases' | 'elderlyCases' | 'costaRicanCases' | 'foreignersCases' | 'pendingNationalityCases' | 'casesInSanJose' | 'casesInAlajuela' | 'casesInCartago' | 'casesInHeredia' | 'casesInGuanacaste' | 'casesInPuntarenas' | 'casesInLimon' | 'casesInUnknownLocation'>
 );
 
 export type reportsQueryVariables = {
@@ -1502,6 +1520,7 @@ export const ReportFragmentFragmentDoc = gql`
   elderlyCases
   costaRicanCases
   foreignersCases
+  pendingNationalityCases
   casesInSanJose
   casesInAlajuela
   casesInCartago
@@ -1509,6 +1528,7 @@ export const ReportFragmentFragmentDoc = gql`
   casesInGuanacaste
   casesInPuntarenas
   casesInLimon
+  casesInUnknownLocation
 }
     `;
 export const NewsFragmentFragmentDoc = gql`

@@ -133,11 +133,13 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               dataKey="date"
               textAnchor="middle"
               tick={{ fontSize: 11, angle: -75 }}
-              tickMargin={16}
+              tickMargin={11}
               tickFormatter={(d) => format.formatDate(d, true)}
+              interval={0}
             />
             <YAxis dataKey="confirmedCases" />
             <Tooltip label="date" />
+            <Legend verticalAlign="bottom" layout="horizontal" align="center" />
             <Line dataKey="confirmedCases" name="Confirmados" />
             <Line dataKey="byStatus.active" name="Activos" stroke="#f1c40f" />
             <Line
@@ -149,6 +151,36 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               dataKey="byStatus.deceased"
               name="Fallecidos"
               stroke="#e74c3c"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </Card>
+
+      <Card
+        title="Pruebas por día"
+        sx={{ variant: 'components.cases.stats.mainChart' }}
+      >
+        <ResponsiveContainer height={500}>
+          <LineChart
+            data={reports}
+            margin={{ left: 0, right: 16, top: 24, bottom: 24 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="date"
+              textAnchor="middle"
+              tick={{ fontSize: 11, angle: -75 }}
+              tickMargin={11}
+              tickFormatter={(d) => format.formatDate(d, true)}
+              interval={0}
+            />
+            <YAxis dataKey="discardedCases" />
+            <Tooltip label="date" />
+            <Legend verticalAlign="bottom" layout="horizontal" align="center" />
+            <Line
+              dataKey="discardedCases"
+              name="Pruebas realizadas"
+              stroke="#B5E07E"
             />
           </LineChart>
         </ResponsiveContainer>

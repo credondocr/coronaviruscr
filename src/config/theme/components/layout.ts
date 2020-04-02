@@ -20,38 +20,50 @@ const layout = {
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+    title: {
+      color: 'toolbarPrimary',
+    },
+    subtitle: {
+      color: 'toolbarSecondary',
+      mt: [0, 3],
+    },
   },
   nav: {
     container: {
       mt: [3, 0],
       display: 'flex',
       justifyContent: 'space-around',
+      alignItems: 'center',
       alignSelf: 'stretch',
     },
     item: {
-      color: 'textSecondary',
+      alignItems: 'center',
+      color: 'toolbarSecondary',
+      display: 'flex',
+      flexDirection: 'column',
       textDecoration: 'none',
       fontSize: [1, 3],
       fontWeight: 'bold',
+      borderBottom: '2px solid',
+      borderBottomColor: 'toolbar',
       ml: [0, 4],
       '&:hover': {
-        color: 'text',
+        color: 'toolbarPrimary',
       },
     },
     itemActive: {
       variant: 'components.layout.nav.item',
-      color: 'text',
-      borderBottom: '2px solid',
-      borderBottomColor: 'primary',
+      color: 'toolbarPrimary',
+      borderBottomColor: 'toolbarPrimary',
     },
   },
   main: {
     variant: 'components.layout.container',
-    my: 15,
+    my: 8,
   },
   footer: {
     wrapper: {
-      bg: 'toolbar',
+      bg: 'footer',
       py: [5, 10],
     },
     container: {

@@ -17,6 +17,7 @@ const ui = {
       },
     },
     title: {
+      color: 'textSecondary',
       mb: 8,
       display: 'flex',
       alignItems: 'center',

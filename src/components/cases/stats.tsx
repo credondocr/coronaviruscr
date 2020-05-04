@@ -38,6 +38,10 @@ const CasesStats: React.FC<CasesStatsProps> = ({
   reports,
 }) => {
   const lastReport = reports[reports.length - 1]
+  const yesterdayReport = reports[reports.length - 2]
+
+  const yesterdayConfirmedCases = yesterdayReport.confirmedCases
+  const yesterdayDiscartedCases = yesterdayReport.discardedCases
 
   const byGender = [
     { name: 'Mujeres', value: lastReport.byGender.women },
@@ -80,7 +84,9 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         sx={{ variant: 'components.cases.stats.mainStat' }}
         title="Casos confirmados"
       >
-        <span sx={{ variant: 'components.ui.text.stat' }}>{totalCases}</span>
+        <span sx={{ variant: 'components.ui.text.stat' }}>
+          {totalCases} (+{totalCases - yesterdayConfirmedCases})
+        </span>
       </Card>
 
       <Card
@@ -88,7 +94,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos descartados"
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>
-          {discardedCases}
+          {discardedCases} (+{discardedCases - yesterdayDiscartedCases})
         </span>
       </Card>
 

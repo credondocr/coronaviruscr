@@ -42,6 +42,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
 
   const yesterdayConfirmedCases = yesterdayReport.confirmedCases
   const yesterdayDiscartedCases = yesterdayReport.discardedCases
+  const yesterdayByStatus = yesterdayReport.byStatus
 
   const byGender = [
     { name: 'Mujeres', value: lastReport.byGender.women },
@@ -85,7 +86,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos confirmados"
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>
-          {totalCases} (+{totalCases - yesterdayConfirmedCases})
+          {totalCases} ({totalCases - yesterdayConfirmedCases})
         </span>
       </Card>
 
@@ -94,7 +95,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos descartados"
       >
         <span sx={{ variant: 'components.ui.text.stat' }}>
-          {discardedCases} (+{discardedCases - yesterdayDiscartedCases})
+          {discardedCases} ({discardedCases - yesterdayDiscartedCases})
         </span>
       </Card>
 
@@ -103,7 +104,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'warning' }}>
-          {activeCases}
+          {activeCases} ({activeCases - yesterdayByStatus.active})
         </span>
       </Card>
 
@@ -112,7 +113,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'success' }}>
-          {recoveredCases}
+          {recoveredCases} ({recoveredCases - yesterdayByStatus.recovered})
         </span>
       </Card>
 
@@ -121,7 +122,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         sx={{ variant: 'components.cases.stats.secondaryStat' }}
       >
         <span sx={{ variant: 'components.ui.text.stat', color: 'error' }}>
-          {deadCases}
+          {deadCases} ({deadCases - yesterdayByStatus.deceased})
         </span>
       </Card>
 

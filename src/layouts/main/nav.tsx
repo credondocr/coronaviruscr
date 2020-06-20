@@ -30,10 +30,6 @@ const links = [
     title: 'Inicio',
     path: '/',
   },
-  {
-    title: 'Noticias',
-    path: '/noticias',
-  },
 ]
 
 const Nav: React.FC = () => {

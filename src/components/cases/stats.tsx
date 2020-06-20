@@ -309,14 +309,14 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               type="category"
               dataKey="canton"
               interval={0}
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 12 }}
               tickMargin={10}
             />
             <Legend />
             <XAxis type="number" hide dataKey={yesterday} interval={0} />
-            <Bar barSize={15} label dataKey={yesterday} fill="#ffeaa7" />
+            <Bar label dataKey={yesterday} fill="#ffeaa7" />
             <XAxis type="number" hide dataKey={today} interval={0} />
-            <Bar barSize={15} label dataKey={today} fill="#a6500e" />
+            <Bar label dataKey={today} fill="#a6500e" />
           </BarChart>
         </ResponsiveContainer>
       </Card>
@@ -324,7 +324,6 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos en Cartago"
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
-        {yesterday}
         <ResponsiveContainer height={500}>
           <BarChart
             layout="vertical"
@@ -339,14 +338,14 @@ const CasesStats: React.FC<CasesStatsProps> = ({
               type="category"
               dataKey="canton"
               interval={0}
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 12 }}
               tickMargin={10}
             />
             <Legend />
             <XAxis type="number" hide dataKey={yesterday} interval={0} />
-            <Bar barSize={15} label dataKey={yesterday} fill="#ffeaa7" />
+            <Bar label dataKey={yesterday} fill="#ffeaa7" />
             <XAxis type="number" hide dataKey={today} interval={0} />
-            <Bar barSize={15} label dataKey={today} fill="#a6500e" />
+            <Bar label dataKey={today} fill="#a6500e" />
           </BarChart>
         </ResponsiveContainer>
       </Card>

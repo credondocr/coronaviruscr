@@ -263,7 +263,34 @@ const CasesStats: React.FC<CasesStatsProps> = ({
           </PieChart>
         </ResponsiveContainer>
       </Card>
-
+      <Card
+        title="Casos en San José"
+        sx={{ variant: 'components.cases.stats.mainChart' }}
+      >
+        <ResponsiveContainer height={500}>
+          <BarChart
+            layout="vertical"
+            data={groupedCantonData['San Jos�']
+              .filter((i) => _.get(i, yesterday) > 0)
+              .sort((a, b) =>
+                _.get(a, yesterday) > _.get(b, yesterday) ? -1 : 1
+              )}
+            margin={{ left: 24, top: 24 }}
+          >
+            <YAxis
+              type="category"
+              dataKey="canton"
+              tick={{ fontSize: 12 }}
+              interval={0}
+            />
+            <Legend />
+            <XAxis type="number" hide dataKey={yesterday} interval={0} />
+            <Bar label dataKey={yesterday} fill="#ffeaa7" />
+            <XAxis type="number" hide dataKey={today} interval={0} />
+            <Bar label dataKey={today} fill="#a6500e" />
+          </BarChart>
+        </ResponsiveContainer>
+      </Card>
       <Card
         title="Casos en Alajuela"
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
@@ -439,6 +466,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
           </BarChart>
         </ResponsiveContainer>
       </Card>
+
       <Card
         title="Casos en Otros"
         sx={{ variant: 'components.cases.stats.secondaryChart' }}

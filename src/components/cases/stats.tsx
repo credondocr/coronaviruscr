@@ -267,7 +267,7 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos en San José"
         sx={{ variant: 'components.cases.stats.mainChart' }}
       >
-        <ResponsiveContainer height={500}>
+        <ResponsiveContainer height={700}>
           <BarChart
             layout="vertical"
             data={groupedCantonData['San Jos�']

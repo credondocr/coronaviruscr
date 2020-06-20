@@ -295,7 +295,6 @@ const CasesStats: React.FC<CasesStatsProps> = ({
         title="Casos en Alajuela"
         sx={{ variant: 'components.cases.stats.secondaryChart' }}
       >
-        {yesterday}
         <ResponsiveContainer height={500}>
           <BarChart
             layout="vertical"

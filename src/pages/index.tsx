@@ -44,16 +44,10 @@ export const getStaticProps: GetStaticProps = async () => {
     first: 100,
   })
 
-  const recentNews = await sdk.fetchNews({
-    orderBy: [sdk.NewsOrderBy.date_DESC],
-    first: 6,
-  })
-
   return {
     props: {
       meta,
       reports: reports.reverse(),
-      recentNews,
     },
   }
 }

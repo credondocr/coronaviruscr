@@ -43,19 +43,5 @@ query reports($orderBy: [ReportModelOrderBy], $first: IntType) {
   }
 }
 
-fragment NewsFragment on NewsRecord {
-  id
-  date
-  title
-  url
-  source {
-    name
-    url
-  }
-}
 
-query news($orderBy: [NewsModelOrderBy], $first: IntType) {
-  news: allNews(orderBy: $orderBy, first: $first) {
-    ...NewsFragment
-  }
-}
+

@@ -29,13 +29,3 @@ export const fetchReports = async (
   const { reports } = await sdk.reports(variables)
   return reports.map(formatReport)
 }
-
-export type News = graphql.NewsFragmentFragment
-export const NewsOrderBy = graphql.NewsModelOrderBy
-
-export const fetchNews = async (
-  variables?: graphql.newsQueryVariables
-): Promise<News[]> => {
-  const { news } = await sdk.news(variables)
-  return news
-}

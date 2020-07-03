@@ -12,10 +12,10 @@ export type Scalars = {
   DateTime: any;
   BooleanType: any;
   ItemId: any;
-  FloatType: any;
   IntType: any;
   Date: any;
   UploadId: any;
+  FloatType: any;
   CustomData: any;
   MetaTagAttributes: any;
 };
@@ -24,92 +24,6 @@ export type BooleanFilter = {
   eq?: Maybe<Scalars['BooleanType']>;
 };
 
-
-export type CaseModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
-  _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  _isValid?: Maybe<BooleanFilter>;
-  location?: Maybe<LatLonFilter>;
-  news?: Maybe<LinksFilter>;
-  nationality?: Maybe<StringFilter>;
-  age?: Maybe<IntegerFilter>;
-  gender?: Maybe<StringFilter>;
-  casestatus?: Maybe<StringFilter>;
-  updated?: Maybe<DateFilter>;
-  detected?: Maybe<DateFilter>;
-  OR?: Maybe<Array<Maybe<CaseModelFilter>>>;
-};
-
-export enum CaseModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  updatedAt_ASC = 'updatedAt_ASC',
-  updatedAt_DESC = 'updatedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  nationality_ASC = 'nationality_ASC',
-  nationality_DESC = 'nationality_DESC',
-  age_ASC = 'age_ASC',
-  age_DESC = 'age_DESC',
-  gender_ASC = 'gender_ASC',
-  gender_DESC = 'gender_DESC',
-  casestatus_ASC = 'casestatus_ASC',
-  casestatus_DESC = 'casestatus_DESC',
-  updated_ASC = 'updated_ASC',
-  updated_DESC = 'updated_DESC',
-  detected_ASC = 'detected_ASC',
-  detected_DESC = 'detected_DESC'
-}
-
-export type CaseRecord = {
-   __typename?: 'CaseRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _updatedAt: Scalars['DateTime'];
-  age?: Maybe<Scalars['IntType']>;
-  casestatus?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  detected?: Maybe<Scalars['Date']>;
-  gender?: Maybe<Scalars['String']>;
-  id: Scalars['ItemId'];
-  location?: Maybe<LatLonField>;
-  nationality?: Maybe<Scalars['String']>;
-  news: Array<NewsRecord>;
-  updated?: Maybe<Scalars['Date']>;
-  updatedAt: Scalars['DateTime'];
-};
-
-
-export type CaseRecord_seoMetaTagsArgs = {
-  locale?: Maybe<SiteLocale>;
-};
 
 export type CollectionMetadata = {
    __typename?: 'CollectionMetadata';
@@ -140,6 +54,16 @@ export type ColorField = {
   red?: Maybe<Scalars['IntType']>;
 };
 
+export type CreatedAtFilter = {
+  gt?: Maybe<Scalars['DateTime']>;
+  lt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  exists?: Maybe<Scalars['BooleanType']>;
+  eq?: Maybe<Scalars['DateTime']>;
+  neq?: Maybe<Scalars['DateTime']>;
+};
+
 
 
 export type DateFilter = {
@@ -152,16 +76,6 @@ export type DateFilter = {
   neq?: Maybe<Scalars['Date']>;
 };
 
-
-export type DateTimeFilter = {
-  gt?: Maybe<Scalars['DateTime']>;
-  lt?: Maybe<Scalars['DateTime']>;
-  gte?: Maybe<Scalars['DateTime']>;
-  lte?: Maybe<Scalars['DateTime']>;
-  exists?: Maybe<Scalars['BooleanType']>;
-  eq?: Maybe<Scalars['DateTime']>;
-  neq?: Maybe<Scalars['DateTime']>;
-};
 
 export enum FaviconType {
   icon = 'icon',
@@ -230,14 +144,6 @@ export type FileFieldtitleArgs = {
 
 export type FileFieldurlArgs = {
   imgixParams?: Maybe<ImgixParams>;
-};
-
-export type FileFilter = {
-  eq?: Maybe<Scalars['UploadId']>;
-  neq?: Maybe<Scalars['UploadId']>;
-  in?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['UploadId']>>>;
-  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 
@@ -558,39 +464,6 @@ export enum ItemStatus {
   published = 'published'
 }
 
-export type LatLonField = {
-   __typename?: 'LatLonField';
-  latitude?: Maybe<Scalars['FloatType']>;
-  longitude?: Maybe<Scalars['FloatType']>;
-};
-
-export type LatLonFilter = {
-  near?: Maybe<LatLonNearFilter>;
-  exists?: Maybe<Scalars['BooleanType']>;
-};
-
-export type LatLonNearFilter = {
-  latitude: Scalars['FloatType'];
-  longitude: Scalars['FloatType'];
-  radius: Scalars['FloatType'];
-};
-
-export type LinkFilter = {
-  eq?: Maybe<Scalars['ItemId']>;
-  neq?: Maybe<Scalars['ItemId']>;
-  in?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  exists?: Maybe<Scalars['BooleanType']>;
-};
-
-export type LinksFilter = {
-  eq?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  allIn?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  anyIn?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['ItemId']>>>;
-  exists?: Maybe<Scalars['BooleanType']>;
-};
-
 
 export enum MuxThumbnailFormatType {
   jpg = 'jpg',
@@ -598,95 +471,21 @@ export enum MuxThumbnailFormatType {
   gif = 'gif'
 }
 
-export type NewsModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
-  _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  _isValid?: Maybe<BooleanFilter>;
-  thumbnail?: Maybe<FileFilter>;
-  date?: Maybe<DateFilter>;
-  title?: Maybe<StringFilter>;
-  source?: Maybe<LinkFilter>;
-  url?: Maybe<StringFilter>;
-  OR?: Maybe<Array<Maybe<NewsModelFilter>>>;
-};
-
-export enum NewsModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  updatedAt_ASC = 'updatedAt_ASC',
-  updatedAt_DESC = 'updatedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  date_ASC = 'date_ASC',
-  date_DESC = 'date_DESC',
-  title_ASC = 'title_ASC',
-  title_DESC = 'title_DESC',
-  url_ASC = 'url_ASC',
-  url_DESC = 'url_DESC'
-}
-
-export type NewsRecord = {
-   __typename?: 'NewsRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  date?: Maybe<Scalars['Date']>;
-  id: Scalars['ItemId'];
-  source?: Maybe<SourceRecord>;
-  thumbnail?: Maybe<FileField>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-  url?: Maybe<Scalars['String']>;
-};
-
-
-export type NewsRecord_seoMetaTagsArgs = {
-  locale?: Maybe<SiteLocale>;
-};
-
 export type OrientationFilter = {
   eq?: Maybe<UploadOrientation>;
   neq?: Maybe<UploadOrientation>;
 };
 
 export type PageModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
+  _createdAt?: Maybe<CreatedAtFilter>;
+  createdAt?: Maybe<CreatedAtFilter>;
   id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
+  _firstPublishedAt?: Maybe<PublishedAtFilter>;
+  _publicationScheduledAt?: Maybe<PublishedAtFilter>;
+  _publishedAt?: Maybe<PublishedAtFilter>;
   _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
+  _updatedAt?: Maybe<UpdatedAtFilter>;
+  updatedAt?: Maybe<UpdatedAtFilter>;
   _isValid?: Maybe<BooleanFilter>;
   seo?: Maybe<SeoFilter>;
   name?: Maybe<StringFilter>;
@@ -741,39 +540,28 @@ export type PageRecord_seoMetaTagsArgs = {
   locale?: Maybe<SiteLocale>;
 };
 
+export type PublishedAtFilter = {
+  gt?: Maybe<Scalars['DateTime']>;
+  lt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  exists?: Maybe<Scalars['BooleanType']>;
+  eq?: Maybe<Scalars['DateTime']>;
+  neq?: Maybe<Scalars['DateTime']>;
+};
+
 export type Query = {
    __typename?: 'Query';
-  _allCasesMeta: CollectionMetadata;
-  _allNewsMeta: CollectionMetadata;
   _allPagesMeta: CollectionMetadata;
   _allReportsMeta: CollectionMetadata;
-  _allSourcesMeta: CollectionMetadata;
   _allUploadsMeta?: Maybe<CollectionMetadata>;
   _site: Site;
-  allCases: Array<CaseRecord>;
-  allNews: Array<NewsRecord>;
   allPages: Array<PageRecord>;
   allReports: Array<ReportRecord>;
-  allSources: Array<SourceRecord>;
   allUploads: Array<FileField>;
-  case?: Maybe<CaseRecord>;
-  news?: Maybe<NewsRecord>;
   page?: Maybe<PageRecord>;
   report?: Maybe<ReportRecord>;
-  source?: Maybe<SourceRecord>;
   upload?: Maybe<FileField>;
-};
-
-
-export type Query_allCasesMetaArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<CaseModelFilter>;
-};
-
-
-export type Query_allNewsMetaArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<NewsModelFilter>;
 };
 
 
@@ -789,12 +577,6 @@ export type Query_allReportsMetaArgs = {
 };
 
 
-export type Query_allSourcesMetaArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<SourceModelFilter>;
-};
-
-
 export type Query_allUploadsMetaArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<UploadFilter>;
@@ -803,24 +585,6 @@ export type Query_allUploadsMetaArgs = {
 
 export type Query_siteArgs = {
   locale?: Maybe<SiteLocale>;
-};
-
-
-export type QueryallCasesArgs = {
-  locale?: Maybe<SiteLocale>;
-  skip?: Maybe<Scalars['IntType']>;
-  first?: Maybe<Scalars['IntType']>;
-  filter?: Maybe<CaseModelFilter>;
-  orderBy?: Maybe<Array<Maybe<CaseModelOrderBy>>>;
-};
-
-
-export type QueryallNewsArgs = {
-  locale?: Maybe<SiteLocale>;
-  skip?: Maybe<Scalars['IntType']>;
-  first?: Maybe<Scalars['IntType']>;
-  filter?: Maybe<NewsModelFilter>;
-  orderBy?: Maybe<Array<Maybe<NewsModelOrderBy>>>;
 };
 
 
@@ -842,35 +606,12 @@ export type QueryallReportsArgs = {
 };
 
 
-export type QueryallSourcesArgs = {
-  locale?: Maybe<SiteLocale>;
-  skip?: Maybe<Scalars['IntType']>;
-  first?: Maybe<Scalars['IntType']>;
-  filter?: Maybe<SourceModelFilter>;
-  orderBy?: Maybe<Array<Maybe<SourceModelOrderBy>>>;
-};
-
-
 export type QueryallUploadsArgs = {
   locale?: Maybe<SiteLocale>;
   skip?: Maybe<Scalars['IntType']>;
   first?: Maybe<Scalars['IntType']>;
   filter?: Maybe<UploadFilter>;
   orderBy?: Maybe<Array<Maybe<UploadOrderBy>>>;
-};
-
-
-export type QuerycaseArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<CaseModelFilter>;
-  orderBy?: Maybe<Array<Maybe<CaseModelOrderBy>>>;
-};
-
-
-export type QuerynewsArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<NewsModelFilter>;
-  orderBy?: Maybe<Array<Maybe<NewsModelOrderBy>>>;
 };
 
 
@@ -888,13 +629,6 @@ export type QueryreportArgs = {
 };
 
 
-export type QuerysourceArgs = {
-  locale?: Maybe<SiteLocale>;
-  filter?: Maybe<SourceModelFilter>;
-  orderBy?: Maybe<Array<Maybe<SourceModelOrderBy>>>;
-};
-
-
 export type QueryuploadArgs = {
   locale?: Maybe<SiteLocale>;
   filter?: Maybe<UploadFilter>;
@@ -902,37 +636,37 @@ export type QueryuploadArgs = {
 };
 
 export type ReportModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
+  _createdAt?: Maybe<CreatedAtFilter>;
+  createdAt?: Maybe<CreatedAtFilter>;
   id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
+  _firstPublishedAt?: Maybe<PublishedAtFilter>;
+  _publicationScheduledAt?: Maybe<PublishedAtFilter>;
+  _publishedAt?: Maybe<PublishedAtFilter>;
   _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
+  _updatedAt?: Maybe<UpdatedAtFilter>;
+  updatedAt?: Maybe<UpdatedAtFilter>;
   _isValid?: Maybe<BooleanFilter>;
   pendingNationalityCases?: Maybe<IntegerFilter>;
   casesInSanJose?: Maybe<IntegerFilter>;
   casesInGuanacaste?: Maybe<IntegerFilter>;
   casesInUnknownLocation?: Maybe<IntegerFilter>;
-  casesInHeredia?: Maybe<IntegerFilter>;
-  casesInLimon?: Maybe<IntegerFilter>;
-  casesInPuntarenas?: Maybe<IntegerFilter>;
-  casesInCartago?: Maybe<IntegerFilter>;
-  casesInAlajuela?: Maybe<IntegerFilter>;
-  foreignersCases?: Maybe<IntegerFilter>;
   costaRicanCases?: Maybe<IntegerFilter>;
-  elderlyCases?: Maybe<IntegerFilter>;
-  adultCases?: Maybe<IntegerFilter>;
   juvenileCases?: Maybe<IntegerFilter>;
-  menCases?: Maybe<IntegerFilter>;
-  womenCases?: Maybe<IntegerFilter>;
-  deceasedCases?: Maybe<IntegerFilter>;
   recoveredCases?: Maybe<IntegerFilter>;
-  activeCases?: Maybe<IntegerFilter>;
-  discardedCases?: Maybe<IntegerFilter>;
+  casesInCartago?: Maybe<IntegerFilter>;
+  foreignersCases?: Maybe<IntegerFilter>;
+  deceasedCases?: Maybe<IntegerFilter>;
+  casesInAlajuela?: Maybe<IntegerFilter>;
   confirmedCases?: Maybe<IntegerFilter>;
+  casesInHeredia?: Maybe<IntegerFilter>;
+  adultCases?: Maybe<IntegerFilter>;
+  casesInPuntarenas?: Maybe<IntegerFilter>;
+  casesInLimon?: Maybe<IntegerFilter>;
+  menCases?: Maybe<IntegerFilter>;
+  discardedCases?: Maybe<IntegerFilter>;
+  activeCases?: Maybe<IntegerFilter>;
+  elderlyCases?: Maybe<IntegerFilter>;
+  womenCases?: Maybe<IntegerFilter>;
   date?: Maybe<DateFilter>;
   OR?: Maybe<Array<Maybe<ReportModelFilter>>>;
 };
@@ -966,40 +700,40 @@ export enum ReportModelOrderBy {
   casesInGuanacaste_DESC = 'casesInGuanacaste_DESC',
   casesInUnknownLocation_ASC = 'casesInUnknownLocation_ASC',
   casesInUnknownLocation_DESC = 'casesInUnknownLocation_DESC',
-  casesInHeredia_ASC = 'casesInHeredia_ASC',
-  casesInHeredia_DESC = 'casesInHeredia_DESC',
-  casesInLimon_ASC = 'casesInLimon_ASC',
-  casesInLimon_DESC = 'casesInLimon_DESC',
-  casesInPuntarenas_ASC = 'casesInPuntarenas_ASC',
-  casesInPuntarenas_DESC = 'casesInPuntarenas_DESC',
-  casesInCartago_ASC = 'casesInCartago_ASC',
-  casesInCartago_DESC = 'casesInCartago_DESC',
-  casesInAlajuela_ASC = 'casesInAlajuela_ASC',
-  casesInAlajuela_DESC = 'casesInAlajuela_DESC',
-  foreignersCases_ASC = 'foreignersCases_ASC',
-  foreignersCases_DESC = 'foreignersCases_DESC',
   costaRicanCases_ASC = 'costaRicanCases_ASC',
   costaRicanCases_DESC = 'costaRicanCases_DESC',
-  elderlyCases_ASC = 'elderlyCases_ASC',
-  elderlyCases_DESC = 'elderlyCases_DESC',
-  adultCases_ASC = 'adultCases_ASC',
-  adultCases_DESC = 'adultCases_DESC',
   juvenileCases_ASC = 'juvenileCases_ASC',
   juvenileCases_DESC = 'juvenileCases_DESC',
-  menCases_ASC = 'menCases_ASC',
-  menCases_DESC = 'menCases_DESC',
-  womenCases_ASC = 'womenCases_ASC',
-  womenCases_DESC = 'womenCases_DESC',
-  deceasedCases_ASC = 'deceasedCases_ASC',
-  deceasedCases_DESC = 'deceasedCases_DESC',
   recoveredCases_ASC = 'recoveredCases_ASC',
   recoveredCases_DESC = 'recoveredCases_DESC',
-  activeCases_ASC = 'activeCases_ASC',
-  activeCases_DESC = 'activeCases_DESC',
-  discardedCases_ASC = 'discardedCases_ASC',
-  discardedCases_DESC = 'discardedCases_DESC',
+  casesInCartago_ASC = 'casesInCartago_ASC',
+  casesInCartago_DESC = 'casesInCartago_DESC',
+  foreignersCases_ASC = 'foreignersCases_ASC',
+  foreignersCases_DESC = 'foreignersCases_DESC',
+  deceasedCases_ASC = 'deceasedCases_ASC',
+  deceasedCases_DESC = 'deceasedCases_DESC',
+  casesInAlajuela_ASC = 'casesInAlajuela_ASC',
+  casesInAlajuela_DESC = 'casesInAlajuela_DESC',
   confirmedCases_ASC = 'confirmedCases_ASC',
   confirmedCases_DESC = 'confirmedCases_DESC',
+  casesInHeredia_ASC = 'casesInHeredia_ASC',
+  casesInHeredia_DESC = 'casesInHeredia_DESC',
+  adultCases_ASC = 'adultCases_ASC',
+  adultCases_DESC = 'adultCases_DESC',
+  casesInPuntarenas_ASC = 'casesInPuntarenas_ASC',
+  casesInPuntarenas_DESC = 'casesInPuntarenas_DESC',
+  casesInLimon_ASC = 'casesInLimon_ASC',
+  casesInLimon_DESC = 'casesInLimon_DESC',
+  menCases_ASC = 'menCases_ASC',
+  menCases_DESC = 'menCases_DESC',
+  discardedCases_ASC = 'discardedCases_ASC',
+  discardedCases_DESC = 'discardedCases_DESC',
+  activeCases_ASC = 'activeCases_ASC',
+  activeCases_DESC = 'activeCases_DESC',
+  elderlyCases_ASC = 'elderlyCases_ASC',
+  elderlyCases_DESC = 'elderlyCases_DESC',
+  womenCases_ASC = 'womenCases_ASC',
+  womenCases_DESC = 'womenCases_DESC',
   date_ASC = 'date_ASC',
   date_DESC = 'date_DESC'
 }
@@ -1109,72 +843,6 @@ export enum SiteLocale {
   es = 'es'
 }
 
-export type SourceModelFilter = {
-  _createdAt?: Maybe<DateTimeFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  id?: Maybe<ItemIdFilter>;
-  _firstPublishedAt?: Maybe<DateTimeFilter>;
-  _publicationScheduledAt?: Maybe<DateTimeFilter>;
-  _publishedAt?: Maybe<DateTimeFilter>;
-  _status?: Maybe<StatusFilter>;
-  _updatedAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  _isValid?: Maybe<BooleanFilter>;
-  url?: Maybe<StringFilter>;
-  name?: Maybe<StringFilter>;
-  OR?: Maybe<Array<Maybe<SourceModelFilter>>>;
-};
-
-export enum SourceModelOrderBy {
-  _createdAt_ASC = '_createdAt_ASC',
-  _createdAt_DESC = '_createdAt_DESC',
-  createdAt_ASC = 'createdAt_ASC',
-  createdAt_DESC = 'createdAt_DESC',
-  id_ASC = 'id_ASC',
-  id_DESC = 'id_DESC',
-  _firstPublishedAt_ASC = '_firstPublishedAt_ASC',
-  _firstPublishedAt_DESC = '_firstPublishedAt_DESC',
-  _publicationScheduledAt_ASC = '_publicationScheduledAt_ASC',
-  _publicationScheduledAt_DESC = '_publicationScheduledAt_DESC',
-  _publishedAt_ASC = '_publishedAt_ASC',
-  _publishedAt_DESC = '_publishedAt_DESC',
-  _status_ASC = '_status_ASC',
-  _status_DESC = '_status_DESC',
-  _updatedAt_ASC = '_updatedAt_ASC',
-  _updatedAt_DESC = '_updatedAt_DESC',
-  updatedAt_ASC = 'updatedAt_ASC',
-  updatedAt_DESC = 'updatedAt_DESC',
-  _isValid_ASC = '_isValid_ASC',
-  _isValid_DESC = '_isValid_DESC',
-  url_ASC = 'url_ASC',
-  url_DESC = 'url_DESC',
-  name_ASC = 'name_ASC',
-  name_DESC = 'name_DESC'
-}
-
-export type SourceRecord = {
-   __typename?: 'SourceRecord';
-  _createdAt: Scalars['DateTime'];
-  _firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  _isValid: Scalars['BooleanType'];
-  _modelApiKey: Scalars['String'];
-  _publicationScheduledAt?: Maybe<Scalars['DateTime']>;
-  _publishedAt?: Maybe<Scalars['DateTime']>;
-  _seoMetaTags: Array<Tag>;
-  _status: ItemStatus;
-  _updatedAt: Scalars['DateTime'];
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ItemId'];
-  name?: Maybe<Scalars['String']>;
-  updatedAt: Scalars['DateTime'];
-  url?: Maybe<Scalars['String']>;
-};
-
-
-export type SourceRecord_seoMetaTagsArgs = {
-  locale?: Maybe<SiteLocale>;
-};
-
 export type StatusFilter = {
   eq?: Maybe<ItemStatus>;
   neq?: Maybe<ItemStatus>;
@@ -1212,6 +880,16 @@ export type TypeFilter = {
   notIn?: Maybe<Array<Maybe<UploadType>>>;
 };
 
+export type UpdatedAtFilter = {
+  gt?: Maybe<Scalars['DateTime']>;
+  lt?: Maybe<Scalars['DateTime']>;
+  gte?: Maybe<Scalars['DateTime']>;
+  lte?: Maybe<Scalars['DateTime']>;
+  exists?: Maybe<Scalars['BooleanType']>;
+  eq?: Maybe<Scalars['DateTime']>;
+  neq?: Maybe<Scalars['DateTime']>;
+};
+
 export type UploadAltFilter = {
   matches?: Maybe<StringMatchesFilter>;
   notMatches?: Maybe<StringMatchesFilter>;
@@ -1219,6 +897,7 @@ export type UploadAltFilter = {
   neq?: Maybe<Scalars['String']>;
   in?: Maybe<Array<Maybe<Scalars['String']>>>;
   notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
+  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 export type UploadAuthorFilter = {
@@ -1296,8 +975,8 @@ export type UploadFormatFilter = {
 export type UploadHeightFilter = {
   gt?: Maybe<Scalars['IntType']>;
   lt?: Maybe<Scalars['IntType']>;
-  gte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
-  lte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
+  gte?: Maybe<Scalars['IntType']>;
+  lte?: Maybe<Scalars['IntType']>;
   eq?: Maybe<Scalars['IntType']>;
   neq?: Maybe<Scalars['IntType']>;
 };
@@ -1355,8 +1034,8 @@ export enum UploadOrientation {
 export type UploadSizeFilter = {
   gt?: Maybe<Scalars['IntType']>;
   lt?: Maybe<Scalars['IntType']>;
-  gte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
-  lte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
+  gte?: Maybe<Scalars['IntType']>;
+  lte?: Maybe<Scalars['IntType']>;
   eq?: Maybe<Scalars['IntType']>;
   neq?: Maybe<Scalars['IntType']>;
 };
@@ -1376,6 +1055,7 @@ export type UploadTitleFilter = {
   neq?: Maybe<Scalars['String']>;
   in?: Maybe<Array<Maybe<Scalars['String']>>>;
   notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
+  exists?: Maybe<Scalars['BooleanType']>;
 };
 
 export enum UploadType {
@@ -1423,8 +1103,8 @@ export type UploadVideoFieldthumbnailUrlArgs = {
 export type UploadWidthFilter = {
   gt?: Maybe<Scalars['IntType']>;
   lt?: Maybe<Scalars['IntType']>;
-  gte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
-  lte?: Maybe<Array<Maybe<Scalars['IntType']>>>;
+  gte?: Maybe<Scalars['IntType']>;
+  lte?: Maybe<Scalars['IntType']>;
   eq?: Maybe<Scalars['IntType']>;
   neq?: Maybe<Scalars['IntType']>;
 };
@@ -1475,29 +1155,6 @@ export type reportsQuery = (
   )> }
 );
 
-export type NewsFragmentFragment = (
-  { __typename?: 'NewsRecord' }
-  & Pick<NewsRecord, 'id' | 'date' | 'title' | 'url'>
-  & { source: Maybe<(
-    { __typename?: 'SourceRecord' }
-    & Pick<SourceRecord, 'name' | 'url'>
-  )> }
-);
-
-export type newsQueryVariables = {
-  orderBy?: Maybe<Array<Maybe<NewsModelOrderBy>>>;
-  first?: Maybe<Scalars['IntType']>;
-};
-
-
-export type newsQuery = (
-  { __typename?: 'Query' }
-  & { news: Array<(
-    { __typename?: 'NewsRecord' }
-    & NewsFragmentFragment
-  )> }
-);
-
 export const PageMetaTagFragmentFragmentDoc = gql`
     fragment PageMetaTagFragment on Tag {
   attributes
@@ -1531,18 +1188,6 @@ export const ReportFragmentFragmentDoc = gql`
   casesInUnknownLocation
 }
     `;
-export const NewsFragmentFragmentDoc = gql`
-    fragment NewsFragment on NewsRecord {
-  id
-  date
-  title
-  url
-  source {
-    name
-    url
-  }
-}
-    `;
 export const pageMetaTagsDocument = gql`
     query pageMetaTags($name: String!) {
   page(filter: {name: {eq: $name}}) {
@@ -1559,13 +1204,6 @@ export const reportsDocument = gql`
   }
 }
     ${ReportFragmentFragmentDoc}`;
-export const newsDocument = gql`
-    query news($orderBy: [NewsModelOrderBy], $first: IntType) {
-  news: allNews(orderBy: $orderBy, first: $first) {
-    ...NewsFragment
-  }
-}
-    ${NewsFragmentFragmentDoc}`;
 export function getSdk(client: GraphQLClient) {
   return {
     pageMetaTags(variables: pageMetaTagsQueryVariables): Promise<pageMetaTagsQuery> {
@@ -1573,9 +1211,6 @@ export function getSdk(client: GraphQLClient) {
     },
     reports(variables?: reportsQueryVariables): Promise<reportsQuery> {
       return client.request<reportsQuery>(print(reportsDocument), variables);
-    },
-    news(variables?: newsQueryVariables): Promise<newsQuery> {
-      return client.request<newsQuery>(print(newsDocument), variables);
     }
   };
 }

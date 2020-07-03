@@ -12,6 +12,7 @@
     "country-code-emoji": "^1.0.0",
     "csvtojson": "^2.0.10",
     "framer-motion": "^1.9.1",
+    "graphql": "^15.2.0",
     "graphql-request": "^1.8.2",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
